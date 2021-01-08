@@ -6,22 +6,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.stage.Modality;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+
+
 import javafx.stage.Stage;
 
 
-import javax.swing.*;
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ResourceBundle;
+import java.sql.*;
+import java.util.ArrayList;
+
 
 public class Controller {
     @FXML
@@ -44,7 +40,7 @@ public class Controller {
     private TableView tbLibs;
     @FXML
     private Button btnCancel;
-
+    @FXML
     private TableView tbStudents;
     @FXML
     private TableView tbBooks;
@@ -65,6 +61,22 @@ public class Controller {
     @FXML
     private Button btnLBooks;
     @FXML
+    private TableColumn<Students, Integer> tcId;
+    @FXML
+    private TableColumn<Students, String> tcName;
+    @FXML
+    private TableColumn<Students, String> tcLastName;
+    @FXML
+    private TableColumn<Students, String> tcEmail;
+    @FXML
+    private TableColumn<Students, Integer> tcIdL;
+    @FXML
+    private TableColumn<Students, String> tcNameL;
+    @FXML
+    private TableColumn<Students, String> tcLastNameL;
+    @FXML
+    private TableColumn<Students, String> tcEmailL;
+    @FXML
     private TableView tbLStudents;
     @FXML
     private TableView tbLBooks;
@@ -77,6 +89,8 @@ public class Controller {
     @FXML
     private Label lblGreetLibrarian;
 
+
+
     @FXML
     private void onLogin(ActionEvent event) throws Exception {
         Connection con= DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
@@ -84,7 +98,9 @@ public class Controller {
         ResultSet getStmt=get.executeQuery() ;
 
 
+
         if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
+
             while (getStmt.next()) {
 
                 if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
@@ -96,24 +112,38 @@ public class Controller {
                         stage.setScene(tableView);
                         stage.show();
                     }
+                    else if (getStmt.getInt("Role") == 1) {
+                        Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
+                        Scene tableView = new Scene(root);
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(tableView);
+                        stage.show();
+
+                    }
+                    else if (getStmt.getInt("Role") == 2) {
+                        Parent root = FXMLLoader.load(getClass().getResource("student.fxml"));
+                        Scene tableView = new Scene(root);
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(tableView);
+                        stage.show();
+                    }
                     break;
                 } else {
                     lblInfo.setText("Wrong login and password");
 
                 }
-
-
             }
 
 
         }
+        con.close();
     }
 
 
     ///
     @FXML
     public void onLogout(ActionEvent event) throws IOException {
-        Parent root2 = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("ui/login.fxml"));
         Stage window2 = (Stage) btnLogout.getScene().getWindow();
         window2.setScene(new Scene(root2, 562, 399));
     }
@@ -122,7 +152,22 @@ public class Controller {
 
     ///admin window methods
     @FXML
-    public void onLibrarians() {
+    public void onLibrarians() throws Exception{
+
+        tcIdL.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tcNameL.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        tcLastNameL.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tcEmailL.setCellValueFactory(new PropertyValueFactory<>("email"));
+        ArrayList<Librarian> list=new ArrayList<>();
+        Connection con= DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+        PreparedStatement get= con.prepareStatement("SELECT * FROM Users WHERE Role=1");
+        ResultSet getStmt=get.executeQuery() ;
+        while (getStmt.next()){
+            list.add(new Librarian(getStmt.getInt("UsersId"), getStmt.getString("FirstName"),getStmt.getString("LastName"),getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password")));
+        }
+        for (Librarian u: list){
+            tbLibs.getItems().add(u);
+        }
         tbLibs.setVisible(true);
         tbStudents.setVisible(false);
         tbBooks.setVisible(false);
@@ -131,7 +176,23 @@ public class Controller {
     }
 
     @FXML
-    public void onStudents() {
+    public void onStudents() throws  Exception{
+
+        tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tcName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        tcLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        ArrayList<Students> list=new ArrayList<>();
+        Connection con= DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+        PreparedStatement get= con.prepareStatement("SELECT * FROM Users WHERE Role=2");
+        ResultSet getStmt=get.executeQuery() ;
+
+        while (getStmt.next()){
+            list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"),getStmt.getString("LastName"),getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
+        }
+        for (Students u: list){
+            tbStudents.getItems().add(u);
+        }
         tbLibs.setVisible(false);
         tbStudents.setVisible(true);
         tbBooks.setVisible(false);
