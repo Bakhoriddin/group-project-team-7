@@ -17,6 +17,9 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
@@ -76,8 +79,12 @@ public class Controller {
 
     @FXML
     private void onLogin(ActionEvent event) throws Exception {
-        ResultSet getStmt = DatabaseConnection.getStmt("Users");
-        if (txtLogin.getText() != null && txtPassword.getText() != null) {
+        Connection con= DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+        PreparedStatement get= con.prepareStatement("SELECT * FROM Users");
+        ResultSet getStmt=get.executeQuery() ;
+
+
+        if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
             while (getStmt.next()) {
 
                 if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
