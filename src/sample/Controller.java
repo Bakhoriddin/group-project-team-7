@@ -12,9 +12,18 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.sql.*;
 import java.util.ArrayList;
 
+=======
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ResourceBundle;
+>>>>>>> fd1175c0652b24b314c08c10ae0eb71c12c948b9
 
 public class Controller {
     @FXML
@@ -92,7 +101,12 @@ public class Controller {
         PreparedStatement get= con.prepareStatement("SELECT * FROM Users");
         ResultSet getStmt=get.executeQuery() ;
 
+<<<<<<< HEAD
         if (txtLogin.getText() != null && txtPassword.getText() != null) {
+=======
+
+        if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
+>>>>>>> fd1175c0652b24b314c08c10ae0eb71c12c948b9
             while (getStmt.next()) {
 
                 if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
