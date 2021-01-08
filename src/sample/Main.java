@@ -30,8 +30,15 @@ public class Main extends Application {
                     +"title varchar (255) NOT NULL,"
                     +"subject varchar (255) NOT NULL,"
                     +"author varchar (255) NOT NULL,"
-                    +"publish_date date NOT NULL,"
+                    +"publishDate date NOT NULL,"
                     +"PRIMARY KEY (ISBN));";
+            stmt.executeUpdate(query);
+            query = "CREATE TABLE IF NOT EXISTS BORROWED_BOOKS("
+                    +"userName varchar (255) NOT NULL,"
+                    +"borrowedBookName varchar (255) NOT NULL,"
+                    +"borrowedBookIsbn INT NOT NULL,"
+                    +"returnDate date NOT NULL,"
+                    +"returned BIT(1));";
             stmt.executeUpdate(query);
         }
         catch (Exception e) {
