@@ -8,19 +8,31 @@ import javafx.stage.Stage;
 
 import java.sql.*;
 
-public class Main extends Application {
+public class Main extends Application  implements Runnable{
 
     @Override
+<<<<<<< HEAD
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+=======
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("ui/login.fxml"));
+>>>>>>> 265959e479d02cf23fda781b437ea25a1399c804
         primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 560, 400));
         primaryStage.show();
     }
 
     public Main() throws SQLException{}
 
+<<<<<<< HEAD
     public static void main(String[] args) throws Exception {
+=======
+    public static void main(String[] args) {
+        Main obj = new Main();
+        Thread thread= new Thread(obj);
+        thread.start();
+>>>>>>> 265959e479d02cf23fda781b437ea25a1399c804
         launch(args);
         try{
             Connection con;
@@ -45,5 +57,7 @@ public class Main extends Application {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void run() {
     }
 }
