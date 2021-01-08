@@ -73,7 +73,7 @@ public class Controller {
     @FXML
     private void onLogin(ActionEvent event) throws Exception {
         ResultSet getStmt = DatabaseConnection.getStmt("Users");
-        if (txtLogin.getText() != null && txtPassword.getText() != null) {
+        if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
             while (getStmt.next()) {
 
                 if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
