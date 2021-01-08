@@ -34,10 +34,10 @@
                   <Button fx:id="btnLogout" layoutX="403.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogout" prefHeight="25.0" prefWidth="70.0" text="Log out" />
                   <TableView fx:id="tbLibs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="402.0" visible="false">
                     <columns>
-                      <TableColumn fx:id="tcIdL" prefWidth="90.0" text="Id" />
-                      <TableColumn fx:id="tcNameL" prefWidth="92.0" text="Name" />
-                        <TableColumn fx:id="tcLastNameL" prefWidth="115.0" text="Family Name" />
-                        <TableColumn fx:id="tcEmailL" prefWidth="109.0" text="email" />
+                      <TableColumn prefWidth="90.0" text="ID" />
+                      <TableColumn prefWidth="92.0" text="Name" />
+                        <TableColumn prefWidth="115.0" text="Family Name" />
+                        <TableColumn prefWidth="109.0" text="email" />
                     </columns>
                   </TableView>
                   <TableView fx:id="tbStudents" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="402.0" visible="false">
