@@ -18,6 +18,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    public Main() throws SQLException{}
 
     public static void main(String[] args) throws Exception {
         launch(args);
