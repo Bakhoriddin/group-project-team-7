@@ -34,18 +34,18 @@
                   <Button fx:id="btnLogout" layoutX="403.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onLogout" prefHeight="25.0" prefWidth="70.0" text="Log out" />
                   <TableView fx:id="tbLibs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="402.0" visible="false">
                     <columns>
-                      <TableColumn prefWidth="90.0" text="ID" />
-                      <TableColumn prefWidth="92.0" text="Name" />
-                        <TableColumn prefWidth="115.0" text="Family Name" />
-                        <TableColumn prefWidth="109.0" text="email" />
+                      <TableColumn fx:id="tcIdL" prefWidth="90.0" text="Id" />
+                      <TableColumn fx:id="tcNameL" prefWidth="92.0" text="Name" />
+                        <TableColumn fx:id="tcLastNameL" prefWidth="115.0" text="Family Name" />
+                        <TableColumn fx:id="tcEmailL" prefWidth="109.0" text="email" />
                     </columns>
                   </TableView>
                   <TableView fx:id="tbStudents" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="402.0" visible="false">
                     <columns>
-                      <TableColumn prefWidth="78.0" text="ID" />
-                      <TableColumn prefWidth="85.0" text="Name" />
-                        <TableColumn prefWidth="96.0" text="Family Name" />
-                        <TableColumn prefWidth="50.0" text="email" />
+                      <TableColumn fx:id="tcId" prefWidth="78.0" text="ID" />
+                      <TableColumn fx:id="tcName" prefWidth="85.0" text="Name" />
+                        <TableColumn fx:id="tcLastName" prefWidth="96.0" text="Family Name" />
+                        <TableColumn fx:id="tcEmail" prefWidth="50.0" text="email" />
                         <TableColumn prefWidth="98.0" text="borrowed book" />
                     </columns>
                   </TableView>
@@ -58,7 +58,7 @@
                         <TableColumn prefWidth="92.0" text="Publish Date" />
                     </columns>
                   </TableView>
-                  <Label  fx:id="lblGreetAdmin" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="160.0" prefHeight="25.0" prefWidth="402.0" text="Welcome to Administrator's Page!" textAlignment="CENTER" textFill="#0310cd">
+                  <Label fx:id="lblGreetAdmin" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="160.0" prefHeight="25.0" prefWidth="402.0" text="Welcome to Administrator's Page!" textAlignment="CENTER" textFill="#0310cd">
                      <font>
                         <Font name="Time Roman" size="23.0" />
                      </font>

@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 
 
-public class Main extends Application {
+public class Main extends Application  implements Runnable{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -20,6 +20,11 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        Main obj = new Main();
+        Thread thread= new Thread(obj);
+        thread.start();
         launch(args);
+    }
+    public void run() {
     }
 }
