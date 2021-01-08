@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-<<<<<<< HEAD
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -15,14 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 
-import javax.swing.*;
 import java.io.IOException;
-<<<<<<< HEAD
 import java.sql.*;
 import java.util.ArrayList;
-
-
-import java.net.URL;
 
 
 public class Controller {
@@ -46,7 +40,7 @@ public class Controller {
     private TableView tbLibs;
     @FXML
     private Button btnCancel;
-
+    @FXML
     private TableView tbStudents;
     @FXML
     private TableView tbBooks;
@@ -124,6 +118,7 @@ public class Controller {
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(tableView);
                         stage.show();
+
                     }
                     else if (getStmt.getInt("Role") == 2) {
                         Parent root = FXMLLoader.load(getClass().getResource("student.fxml"));
@@ -148,7 +143,7 @@ public class Controller {
     ///
     @FXML
     public void onLogout(ActionEvent event) throws IOException {
-        Parent root2 = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("ui/login.fxml"));
         Stage window2 = (Stage) btnLogout.getScene().getWindow();
         window2.setScene(new Scene(root2, 562, 399));
     }
