@@ -6,11 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+<<<<<<< HEAD
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+=======
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+>>>>>>> 1d00743a5dc9b408da4fd745e04b15eee8c1c88e
 import javafx.stage.Stage;
 
 
+import javax.swing.*;
 import java.io.IOException;
 <<<<<<< HEAD
 import java.sql.*;
@@ -45,6 +54,8 @@ public class Controller {
     @FXML
     private TableView tbLibs;
     @FXML
+    private Button btnCancel;
+
     private TableView tbStudents;
     @FXML
     private TableView tbBooks;
@@ -265,6 +276,7 @@ public class Controller {
         tbLBooks.setVisible(true);
         lblGreetLibrarian.setVisible(false);
 
+
     }
 
     @FXML
@@ -296,4 +308,66 @@ public class Controller {
         btnLModify.setDisable(true);
         btnLDelete.setDisable(false);
     }
+    //** Librarian section add/modify buttons
+
+    //Students Adding Window
+    @FXML
+
+    private void onLAdd(ActionEvent event) throws Exception {
+        if (tbLStudents.isVisible()) {   //if the students table is opened the button "Add" opens Student list to add
+            Parent root = FXMLLoader.load(getClass().getResource("libAddButton.fxml"));
+            Scene tableView = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(tableView);
+            stage.show();
+        }
+
+        else if (tbLBooks.isVisible()) {   //if books table opened = Books Add List opened
+            Parent root = FXMLLoader.load(getClass().getResource("libBooksAddButton.fxml"));
+            Scene tableView = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(tableView);
+            stage.show();
+        }
+
+    }
+
+    @FXML
+    private void onCancelLStudent(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
+        Scene tableView = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(tableView);
+        stage.show();
+
+    }
+
+    @FXML
+    private void onAddLStudent(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
+        Scene tableView = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(tableView);
+        stage.show();
+    }
+
+    //Books Adding Window
+
+    @FXML
+    private void onCancelLBook(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
+        Scene tableView = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(tableView);
+        stage.show();
+    }
+    @FXML
+    private void onAddLBook(ActionEvent event) throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
+        Scene tableView = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(tableView);
+        stage.show();
+    }
+
 }

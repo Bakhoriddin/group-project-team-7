@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="562.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="344.0" prefWidth="562.0">
+         <children>
+            <TableView fx:id="tbLStudents" layoutX="-4.0" prefHeight="350.0" prefWidth="568.0">
+              <columns>
+                <TableColumn prefWidth="116.0" text="Name" />
+                <TableColumn prefWidth="125.0" text="Family Name" />
+                  <TableColumn prefWidth="108.0" text="Email" />
+                  <TableColumn prefWidth="218.0" text="Borrowed Book" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="46.0" prefWidth="562.0" GridPane.rowIndex="1">
+         <children>
+            <Button fx:id="btnCancel" layoutX="470.0" layoutY="12.0" mnemonicParsing="false" onAction="#onCancelLStudent" prefHeight="25.0" prefWidth="70.0" text="Cancel" />
+            <Button layoutX="370.0" layoutY="12.0" mnemonicParsing="false" onAction="#onAddLStudent" prefHeight="12.0" prefWidth="70.0" text="Add" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>
