@@ -8,18 +8,23 @@ import javafx.stage.Stage;
 
 
 
-public class Main extends Application {
+public class Main extends Application  implements Runnable{
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("ui/login.fxml"));
         primaryStage.setTitle("Login");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 560, 400));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
+        Main obj = new Main();
+        Thread thread= new Thread(obj);
+        thread.start();
         launch(args);
+    }
+    public void run() {
     }
 }
