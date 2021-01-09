@@ -51,11 +51,11 @@
                   </TableView>
                   <TableView fx:id="tbBooks" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="402.0" visible="false">
                     <columns>
-                      <TableColumn prefWidth="69.0" text="ISBN" />
-                      <TableColumn prefWidth="66.0" text="Title" />
-                        <TableColumn prefWidth="83.0" text="Author" />
-                        <TableColumn prefWidth="91.0" text="Subject" />
-                        <TableColumn prefWidth="92.0" text="Publish Date" />
+                      <TableColumn fx:id="tcISBN" prefWidth="69.0" text="ISBN" />
+                      <TableColumn fx:id="tcTitle" prefWidth="66.0" text="Title" />
+                        <TableColumn fx:id="tcAuthor" prefWidth="83.0" text="Author" />
+                        <TableColumn fx:id="tcSubject" prefWidth="91.0" text="Subject" />
+                        <TableColumn fx:id="tcPublishDate" prefWidth="92.0" text="Publish Date" />
                     </columns>
                   </TableView>
                   <Label fx:id="lblGreetAdmin" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="160.0" prefHeight="25.0" prefWidth="402.0" text="Welcome to Administrator's Page!" textAlignment="CENTER" textFill="#0310cd">
