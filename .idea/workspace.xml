@@ -24,7 +24,28 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="fromFayyoz" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated Add buttons in UI from Ogay">
+      <change afterPath="$PROJECT_DIR$/src/sample/Books.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/books/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/books/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/books/log/log1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/books/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/books/seg0/c490.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/seg0/c4a1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/books/seg0/c4a1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.lck" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/log.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/log1.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seg0/c400.dat" beforeDir="false" afterPath="$PROJECT_DIR$/db/seg0/c400.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/seg0/c490.dat" beforeDir="false" afterPath="$PROJECT_DIR$/db/seg0/c490.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/AddUsers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/AddUsers.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Edit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Edit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/admin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/admin.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,6 +98,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="module-info" />
+        <option value="FxmlFile" />
+        <option value="Class" />
         <option value="Class" />
       </list>
     </option>
@@ -112,12 +136,15 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Program Files/SceneBuilder/SceneBuilder.exe" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../../../Program Files/SceneBuilder/SceneBuilder.exe" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
+    <property name="settings.editor.selected.configurable" value="terminal" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -138,6 +165,17 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -150,18 +188,12 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="14" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="group-project-team-7" />
       <option name="VM_PARAMETERS" value="--module-path $ProjectFileDir$\lib --add-modules javafx.controls,javafx.fxml" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sample.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -213,6 +245,11 @@
       <option name="presentableId" value="Default" />
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
+      <workItem from="1610030710704" duration="2472000" />
+      <workItem from="1610084988896" duration="13000" />
+      <workItem from="1610085635645" duration="4843000" />
+      <workItem from="1610091834734" duration="11365000" />
+      <workItem from="1610107092625" duration="3837000" />
     </task>
     <task id="LOCAL-00001" summary="starting">
       <created>1609230574292</created>
@@ -235,11 +272,25 @@
       <option name="project" value="LOCAL" />
       <updated>1610101095649</updated>
     </task>
+    <task id="LOCAL-00004" summary="Created a database for borrowed books and users who borrowed it">
+      <created>1610116470218</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1610116470218</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added a constructor to catch exceptions in sql">
+      <created>1610116728567</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1610116728567</updated>
+    </task>
     <option name="localTasksCounter" value="4" />
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1302000" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -268,73 +319,63 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="starting" />
     <MESSAGE value="fromFayyoz" />
-    <option name="LAST_COMMIT_MESSAGE" value="fromFayyoz" />
+    <MESSAGE value="updated Add buttons in UI from Ogay" />
+    <MESSAGE value="Created database for books" />
+    <MESSAGE value="removed sample.fxml" />
+    <MESSAGE value="Created a database for borrowed books and users who borrowed it" />
+    <MESSAGE value="Added a constructor to catch exceptions in sql" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a constructor to catch exceptions in sql" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="249" y="0" key="#Project_Structure" timestamp="1609229261877">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="249" y="7" key="#Project_Structure" timestamp="1610196565659">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1609229261877" />
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609236372034">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="249" y="7" key="#Project_Structure/0.0.1536.864@0.0.1536.864" timestamp="1610196565659" />
+    <state x="223" y="87" width="1089" height="761" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610197117561">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1609236372034" />
-    <state x="548" y="117" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1609236370597">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="223" y="87" width="1089" height="761" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.864@0.0.1536.864" timestamp="1610197117561" />
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1610206324019">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="548" y="117" key="#com.intellij.ide.macro.MacrosDialog/0.0.1536.824@0.0.1536.824" timestamp="1609236370597" />
-    <state x="473" y="154" key="FileChooserDialogImpl" timestamp="1610083138515">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1610206324019" />
+    <state x="549" y="186" key="FileChooserDialogImpl" timestamp="1610197635093">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="473" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1609943234586" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1610100878111">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="549" y="186" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1610197635093" />
+    <state width="1493" height="217" key="GridCell.Tab.0.bottom" timestamp="1610206379149">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610100878111" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1610100878110">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="217" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1610206379149" />
+    <state width="1493" height="217" key="GridCell.Tab.0.center" timestamp="1610206379149">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1610100878110" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1610100878109">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="217" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1610206379149" />
+    <state width="1493" height="217" key="GridCell.Tab.0.left" timestamp="1610206379149">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1610100878109" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1610100878110">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="217" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1610206379149" />
+    <state width="1493" height="217" key="GridCell.Tab.0.right" timestamp="1610206379149">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1610100878110" />
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1610032229290">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1493" height="217" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1610206379149" />
+    <state x="249" y="7" key="SettingsEditor" timestamp="1610196960667">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1610032229290" />
-    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1610032229290">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="249" y="7" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1610196960667" />
+    <state x="322" y="86" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1610204233996">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1610032229290" />
-    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1610032229289">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1610032229289" />
-    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1610032229290">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1610032229290" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1610100110520">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1610100110520" />
-    <state x="361" y="132" key="Vcs.Push.Dialog.v2" timestamp="1609230584281">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="132" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1609230584281" />
-    <state x="209" y="66" key="new project wizard" timestamp="1609586057800">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="209" y="66" key="new project wizard/0.0.1536.824/-1680.29.1680.1010@0.0.1536.824" timestamp="1609586057800" />
-    <state x="209" y="73" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1609237565918" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1610085513972">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1610085513972" />
+    <state x="322" y="86" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864@0.0.1536.864" timestamp="1610204233996" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
