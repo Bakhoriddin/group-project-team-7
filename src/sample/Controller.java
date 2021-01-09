@@ -68,7 +68,6 @@ public class Controller {
     TextField txtReturnDate;
 
 
-
     ///admin window items
     @FXML
     private Button btnLogout;
@@ -138,42 +137,15 @@ public class Controller {
 
     @FXML
     private void onLogin(ActionEvent event) throws Exception {
-            Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
-            PreparedStatement get = con.prepareStatement("SELECT * FROM Users");
-            ResultSet getStmt = get.executeQuery();
+        Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+        PreparedStatement get = con.prepareStatement("SELECT * FROM Users");
+        ResultSet getStmt = get.executeQuery();
 
 
-            if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
+        if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
 
-                while (getStmt.next()) {
+            while (getStmt.next()) {
 
-                    if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
-
-                        if (getStmt.getInt("Role") == 0) {
-                            Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-                            Scene tableView = new Scene(root);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(tableView);
-                            stage.show();
-                        } else if (getStmt.getInt("Role") == 1) {
-                            Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
-                            Scene tableView = new Scene(root);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(tableView);
-                            stage.show();
-
-                        } else if (getStmt.getInt("Role") == 2) {
-                            Parent root = FXMLLoader.load(getClass().getResource("student.fxml"));
-                            Scene tableView = new Scene(root);
-                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setScene(tableView);
-                            stage.show();
-                        }
-                        break;
-                    } else {
-                        lblInfo.setText("Wrong login and password");
-
-<<<<<<< HEAD
                 if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
 
                     if (getStmt.getInt("Role") == 0) {
@@ -182,287 +154,239 @@ public class Controller {
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(tableView);
                         stage.show();
-                        role =0;
-                    }
-                    else if (getStmt.getInt("Role") == 1) {
+                        role = 0;
+                    } else if (getStmt.getInt("Role") == 1) {
                         Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
                         Scene tableView = new Scene(root);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(tableView);
                         stage.show();
-                        role=1;
-
-                    }
-                    else if (getStmt.getInt("Role") == 2) {
+                        role = 1;
+                    } else if (getStmt.getInt("Role") == 2) {
                         Parent root = FXMLLoader.load(getClass().getResource("student.fxml"));
                         Scene tableView = new Scene(root);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(tableView);
                         stage.show();
-=======
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
+                        role = 2;
                     }
-                }
+                    break;
+                } else
+                    lblInfo.setText("Wrong login and password");
 
 
             }
             con.close();
         }
+    }
 
 
-        ///
-        @FXML
-        public void onLogout (ActionEvent event) throws IOException {
-            Parent root2 = FXMLLoader.load(getClass().getResource("ui/login.fxml"));
-            Stage window2 = (Stage) btnLogout.getScene().getWindow();
-            window2.setScene(new Scene(root2, 562, 399));
+    ///
+
+    @FXML
+    public void onLogout(ActionEvent event) throws IOException {
+        Parent root2 = FXMLLoader.load(getClass().getResource("ui/login.fxml"));
+        Stage window2 = (Stage) btnLogout.getScene().getWindow();
+        window2.setScene(new Scene(root2, 562, 399));
+    }
+
+
+    ///admin window methods
+    @FXML
+    public void onLibrarians() throws Exception {
+
+        tcIdL.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tcNameL.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        tcLastNameL.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tcEmailL.setCellValueFactory(new PropertyValueFactory<>("email"));
+        ArrayList<Librarian> list = new ArrayList<>();
+        Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+        PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=1");
+        ResultSet getStmt = get.executeQuery();
+        while (getStmt.next()) {
+            list.add(new Librarian(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password")));
         }
-
-
-        ///admin window methods
-        @FXML
-        public void onLibrarians () throws Exception {
-
-            tcIdL.setCellValueFactory(new PropertyValueFactory<>("id"));
-            tcNameL.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-            tcLastNameL.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-            tcEmailL.setCellValueFactory(new PropertyValueFactory<>("email"));
-            ArrayList<Librarian> list = new ArrayList<>();
-            Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
-            PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=1");
-            ResultSet getStmt = get.executeQuery();
-            while (getStmt.next()) {
-                list.add(new Librarian(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password")));
-            }
-            for (Librarian u : list) {
-                tbLibs.getItems().add(u);
-            }
-            tbLibs.setVisible(true);
-            tbStudents.setVisible(false);
-            tbBooks.setVisible(false);
-            lblGreetAdmin.setVisible(false);
-
+        for (Librarian u : list) {
+            tbLibs.getItems().add(u);
         }
+        tbLibs.setVisible(true);
+        tbStudents.setVisible(false);
+        tbBooks.setVisible(false);
+        lblGreetAdmin.setVisible(false);
 
-        @FXML
-        public void onStudents () throws Exception {
+    }
 
-            tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
-            tcName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-            tcLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-            tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-            ArrayList<Students> list = new ArrayList<>();
-            Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
-            PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=2");
-            ResultSet getStmt = get.executeQuery();
+    @FXML
+    public void onStudents() throws Exception {
 
-            while (getStmt.next()) {
-                list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
-            }
-            for (Students u : list) {
-                tbStudents.getItems().add(u);
-            }
-            tbLibs.setVisible(false);
-            tbStudents.setVisible(true);
-            tbBooks.setVisible(false);
-            lblGreetAdmin.setVisible(false);
+        tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tcName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        tcLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        ArrayList<Students> list = new ArrayList<>();
+        Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+        PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=2");
+        ResultSet getStmt = get.executeQuery();
 
+        while (getStmt.next()) {
+            list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
         }
-
-        @FXML
-        public void onBooks () {
-            tbLibs.setVisible(false);
-            tbStudents.setVisible(false);
-            tbBooks.setVisible(true);
-            lblGreetAdmin.setVisible(false);
-
+        for (Students u : list) {
+            tbStudents.getItems().add(u);
         }
+        tbLibs.setVisible(false);
+        tbStudents.setVisible(true);
+        tbBooks.setVisible(false);
+        lblGreetAdmin.setVisible(false);
 
-        @FXML
-        public void onAdd () {
-            btnAdd.setDisable(false);
-            btnModify.setDisable(true);
-            btnDelete.setDisable(true);
-            lblGreetAdmin.setVisible(false);
-            tbLibs.setVisible(false);
-            tbStudents.setVisible(false);
-            tbBooks.setVisible(false);
+    }
 
-        }
+    @FXML
+    public void onBooks() {
+        tbLibs.setVisible(false);
+        tbStudents.setVisible(false);
+        tbBooks.setVisible(true);
+        lblGreetAdmin.setVisible(false);
 
-        @FXML
-        public void onModify () {
-            btnAdd.setDisable(true);
-            btnModify.setDisable(false);
-            btnDelete.setDisable(true);
-            lblGreetAdmin.setVisible(false);
-            tbLibs.setVisible(false);
-            tbStudents.setVisible(false);
-            tbBooks.setVisible(false);
+    }
 
-        }
+    @FXML
+    public void onAdd() {
+        btnAdd.setDisable(false);
+        btnModify.setDisable(true);
+        btnDelete.setDisable(true);
+        lblGreetAdmin.setVisible(false);
+        tbLibs.setVisible(false);
+        tbStudents.setVisible(false);
+        tbBooks.setVisible(false);
 
-        @FXML
-        public void onDelete () {
-            btnAdd.setDisable(true);
-            btnModify.setDisable(true);
-            btnDelete.setDisable(false);
-            lblGreetAdmin.setVisible(false);
-            tbLibs.setVisible(false);
-            tbStudents.setVisible(false);
-            tbBooks.setVisible(false);
+    }
 
-        }
+    @FXML
+    public void onModify() {
+        btnAdd.setDisable(true);
+        btnModify.setDisable(false);
+        btnDelete.setDisable(true);
+        lblGreetAdmin.setVisible(false);
+        tbLibs.setVisible(false);
+        tbStudents.setVisible(false);
+        tbBooks.setVisible(false);
 
-<<<<<<< HEAD
+    }
+
+    @FXML
+    public void onDelete() {
+        btnAdd.setDisable(true);
+        btnModify.setDisable(true);
+        btnDelete.setDisable(false);
+        lblGreetAdmin.setVisible(false);
+        tbLibs.setVisible(false);
+        tbStudents.setVisible(false);
+        tbBooks.setVisible(false);
+
+    }
+
     ///librarian window methods
     @FXML
     public void onLStudents() {
         tbStudents.setVisible(true);
         tbBooks.setVisible(false);
         lblGreetLibrarian.setVisible(false);
-=======
+
         ///librarian window methods
-        @FXML
-        public void onLStudents () {
-            tbLStudents.setVisible(true);
-            tbLBooks.setVisible(false);
-            lblGreetLibrarian.setVisible(false);
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
+    }
 
-        }
-
-<<<<<<< HEAD
     @FXML
     public void onLBooks() {
         tbStudents.setVisible(false);
         tbBooks.setVisible(true);
         lblGreetLibrarian.setVisible(false);
-=======
-        @FXML
-        public void onLBooks () {
-            tbLStudents.setVisible(false);
-            tbLBooks.setVisible(true);
-            lblGreetLibrarian.setVisible(false);
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
 
+    }
 
-        }
+    @FXML
+    public void onLAdd() {
+        tbLStudents.setVisible(false);
+        tbLBooks.setVisible(false);
+        lblGreetLibrarian.setVisible(false);
+        btnLAdd.setDisable(false);
+        btnLModify.setDisable(true);
+        btnLDelete.setDisable(true);
+    }
 
-        @FXML
-        public void onLAdd () {
-            tbLStudents.setVisible(false);
-            tbLBooks.setVisible(false);
-            lblGreetLibrarian.setVisible(false);
-            btnLAdd.setDisable(false);
-            btnLModify.setDisable(true);
-            btnLDelete.setDisable(true);
-        }
+    @FXML
+    public void onLModify() {
+        tbLStudents.setVisible(false);
+        tbLBooks.setVisible(false);
+        lblGreetLibrarian.setVisible(false);
+        btnLAdd.setDisable(true);
+        btnLModify.setDisable(false);
+        btnLDelete.setDisable(true);
+    }
 
-        @FXML
-        public void onLModify () {
-            tbLStudents.setVisible(false);
-            tbLBooks.setVisible(false);
-            lblGreetLibrarian.setVisible(false);
-            btnLAdd.setDisable(true);
-            btnLModify.setDisable(false);
-            btnLDelete.setDisable(true);
-        }
+    @FXML
+    public void onLDelete() {
+        tbLStudents.setVisible(false);
+        tbLBooks.setVisible(false);
+        lblGreetLibrarian.setVisible(false);
+        btnLAdd.setDisable(true);
+        btnLModify.setDisable(true);
+        btnLDelete.setDisable(false);
+    }
 
-        @FXML
-        public void onLDelete () {
-            tbLStudents.setVisible(false);
-            tbLBooks.setVisible(false);
-            lblGreetLibrarian.setVisible(false);
-            btnLAdd.setDisable(true);
-            btnLModify.setDisable(true);
-            btnLDelete.setDisable(false);
-        }
+    //** Librarian section add/modify buttons
 
-        //** Librarian section add/modify buttons
+    //Students Adding Window
 
-        //Students Adding Window
-        @FXML
-
-        private void onLAdd (ActionEvent event) throws Exception {
-            if (tbLStudents.isVisible()) {   //if the students table is opened the button "Add" opens Student list to add
-                Parent root = FXMLLoader.load(getClass().getResource("libAddButton.fxml"));
-                Scene tableView = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(tableView);
-                stage.show();
-            } else if (tbLBooks.isVisible()) {   //if books table opened = Books Add List opened
-                Parent root = FXMLLoader.load(getClass().getResource("libBooksAddButton.fxml"));
-                Scene tableView = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(tableView);
-                stage.show();
-            }
-
-<<<<<<< HEAD
     //Main Add Button
     @FXML
     private void onAdd(ActionEvent event) throws Exception {
-         if (tbStudents.isVisible()) {   //if Students table opened = Student Add List opened
+        if (tbStudents.isVisible()) {   //if Students table opened = Student Add List opened
             Parent root = FXMLLoader.load(getClass().getResource("AddUsers.fxml"));
-=======
-        }
-
-        @FXML
-        private void onCancelLStudent (ActionEvent event) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
             Scene tableView = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(tableView);
             stage.show();
 
-        }
-
-<<<<<<< HEAD
-        else if (tbBooks.isVisible()){  //if Books table opened = Books Add List opened
+        } else if (tbBooks.isVisible()) {  //if Books table opened = Books Add List opened
             Parent root = FXMLLoader.load(getClass().getResource("AddBooks.fxml"));
-=======
-        @FXML
-        private void onAddLStudent (ActionEvent event) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
+            Scene tableView = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(tableView);
+            stage.show();
+        } else if (tbLibs.isVisible()) {   //if the librarian table is opened the button "Add" opens Librarian list to add
+            Parent root = FXMLLoader.load(getClass().getResource("AddBorrowedBooks.fxml"));
             Scene tableView = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(tableView);
             stage.show();
 
         }
-         else if (tbLibs.isVisible()) {   //if the librarian table is opened the button "Add" opens Librarian list to add
-             Parent root = FXMLLoader.load(getClass().getResource("AddBorrowedBooks.fxml"));
-             Scene tableView = new Scene(root);
-             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-             stage.setScene(tableView);
-             stage.show();
+    }
 
-         }
+    //Books Adding Window Buttons
 
-        //Books Adding Window Buttons
-
-<<<<<<< HEAD
 
     //Radio Buttons
     @FXML
-    private void onRdSlctStudnt(ActionEvent event) throws Exception{
+    private void onRdSlctStudnt(ActionEvent event) throws Exception {
         //choose to add student or librarian
     }
+
     @FXML
-    private void onRdSlctLbr(ActionEvent event) throws Exception{
+    private void onRdSlctLbr(ActionEvent event) throws Exception {
         //choose to add student or librarian
     }
+
     @FXML
-    private void onRdStudnt(ActionEvent event) throws Exception{
+    private void onRdStudnt(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("AddUsers.fxml"));
         Scene tableView = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(tableView);
         stage.show();
     }
+
     @FXML
     private void onRdBooks(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("AddBooks.fxml"));
@@ -471,6 +395,7 @@ public class Controller {
         stage.setScene(tableView);
         stage.show();
     }
+
     @FXML
     private void onRdLbr(ActionEvent event) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("AddBorrowedBooks.fxml"));
@@ -482,141 +407,48 @@ public class Controller {
 
 
     @FXML
-    private void onCancel(ActionEvent event) throws Exception{
+    private void onCancel(ActionEvent event) throws Exception {
         if (role == 0) {
             Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-=======
-        @FXML
-        private void onCancelLBook (ActionEvent event) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
             Scene tableView = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(tableView);
             stage.show();
-        }
-<<<<<<< HEAD
-        else if (role == 1){
-=======
-        @FXML
-        private void onAddLBook (ActionEvent event) throws Exception {
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
+
+        } else if (role == 1) {
             Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
             Scene tableView = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(tableView);
             stage.show();
 
+
         }
-<<<<<<< HEAD
+
     }
+
     @FXML
-    private void onFinish(ActionEvent event) throws Exception{
+    private void onFinish(ActionEvent event) throws Exception {
         if (role == 0) {
-=======
+            Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
+            Scene tableView = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(tableView);
+            stage.show();
+        } else if (role == 1) {
+            Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
+            Scene tableView = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(tableView);
+            stage.show();
+        }
+
 
         //Administrator Adding Button
-        @FXML
-        private void onAdd (ActionEvent event) throws Exception {
-            if (tbLibs.isVisible()) {   //if the librarian table is opened the button "Add" opens Librarian list to add
-                Parent root = FXMLLoader.load(getClass().getResource("librarianAddButton.fxml"));
-                Scene tableView = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(tableView);
-                stage.show();
-            } else if (tbStudents.isVisible()) {   //if Students table opened = Student Add List opened
-                Parent root = FXMLLoader.load(getClass().getResource("adminStudentAddButton.fxml"));
-                Scene tableView = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(tableView);
-                stage.show();
-            } else if (tbBooks.isVisible()) {  //if Books table opened = Books Add List opened
-                Parent root = FXMLLoader.load(getClass().getResource("adminBooksAddButton.fxml"));
-                Scene tableView = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(tableView);
-                stage.show();
-            }
-
-        }
-        // Add/Cancel Buttons for librarian section adding mode
-        @FXML
-        private void onAAdd (ActionEvent event) throws Exception {
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
-            Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-            Scene tableView = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(tableView);
-            stage.show();
-<<<<<<< HEAD
-        }
-        else if (role == 1){
-            Parent root = FXMLLoader.load(getClass().getResource("librarian.fxml"));
-=======
-
-
-        }
-        @FXML
-        private void onACancel (ActionEvent event) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
-            Scene tableView = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(tableView);
-            stage.show();
-
-<<<<<<< HEAD
-        }
-    }
-=======
-
-        }
-        // Add/Cancel Buttons for student section adding mode
-        @FXML
-        private void onAAddStudent (ActionEvent event) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-            Scene tableView = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(tableView);
-            stage.show();
-
->>>>>>> 09f60f9db1479564095a153a73977e2089777057
-
-        }
-        @FXML
-        private void onACancelStudent (ActionEvent event) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-            Scene tableView = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(tableView);
-            stage.show();
-
-
-        }
-        // Add/Cancel Buttons for books section adding mode
-        @FXML
-        private void onAAddBooks (ActionEvent event) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-            Scene tableView = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(tableView);
-            stage.show();
-
-
-        }
-        @FXML
-        private void onACancelBooks (ActionEvent event) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("admin.fxml"));
-            Scene tableView = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(tableView);
-            stage.show();
-
-
-        }
 
 
         // Librarian Modify Button
 
 
     }
+}
