@@ -31,13 +31,11 @@
       <change beforePath="$PROJECT_DIR$/db/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/log.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/log1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/logmirror.ctrl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/group-project-team-7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/group-project-team-7.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/AddBooks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/AddBooks.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/AddBorrowedBooks.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/AddBorrowedBooks.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/AddUsers.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/AddUsers.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Edit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Edit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/librarian.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/librarian.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610269863969</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="deleted radio buttons and added design from ogay">
+      <created>1610279131602</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610279131602</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

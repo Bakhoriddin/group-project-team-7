@@ -35,15 +35,15 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="216.0" prefWidth="606.0">
                <children>
-                  <Label layoutX="42.0" layoutY="70.0" prefHeight="25.0" prefWidth="86.0" text="Username:" />
-                  <Label layoutX="42.0" layoutY="127.0" prefHeight="25.0" prefWidth="86.0" text="ISBN:" />
-                  <Label layoutX="42.0" layoutY="181.0" prefHeight="25.0" prefWidth="86.0" text="Title:" />
-                  <Label layoutX="315.0" layoutY="127.0" prefHeight="25.0" prefWidth="86.0" text="Taken Date:" />
+                  <Label layoutX="42.0" layoutY="70.0" prefHeight="25.0" prefWidth="86.0" text="Username:" textFill="ROYALBLUE" />
+                  <Label layoutX="42.0" layoutY="127.0" prefHeight="25.0" prefWidth="86.0" text="ISBN:" textFill="ROYALBLUE" />
+                  <Label layoutX="42.0" layoutY="181.0" prefHeight="25.0" prefWidth="86.0" text="Title:" textFill="ROYALBLUE" />
+                  <Label layoutX="315.0" layoutY="127.0" prefHeight="25.0" prefWidth="86.0" text="Taken Date:" textFill="ROYALBLUE" />
                   <TextField fx:id="txtUsername" layoutX="107.0" layoutY="70.0" />
                   <TextField fx:id="txtISBN" layoutX="107.0" layoutY="127.0" />
                   <TextField fx:id="txtTitle" layoutX="107.0" layoutY="181.0" />
-                  <Label layoutX="315.0" layoutY="181.0" prefHeight="25.0" prefWidth="78.0" text="Return Date:" />
-                  <CheckBox layoutX="405.0" layoutY="230.0" mnemonicParsing="false" text="Returned" />
+                  <Label layoutX="315.0" layoutY="181.0" prefHeight="25.0" prefWidth="78.0" text="Return Date:" textFill="ROYALBLUE" />
+                  <CheckBox layoutX="405.0" layoutY="230.0" mnemonicParsing="false" text="Returned" textFill="ROYALBLUE" />
                   <DatePicker fx:id="txttakenDate" layoutX="393.0" layoutY="127.0" />
                   <DatePicker fx:id="txtReturnDate" layoutX="393.0" layoutY="181.0" />
                </children>

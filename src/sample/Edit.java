@@ -177,41 +177,8 @@ public class Edit implements Initializable {
          con.close();
 
      }
-     @FXML
-    private void onRdStudnt(ActionEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("AddUsers.fxml"));
-        Scene tableView = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(tableView);
-        stage.show();
-    }
 
-    @FXML
-    private void onRdBooks(ActionEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("AddBooks.fxml"));
-        Scene tableView = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(tableView);
-        stage.show();
-    }
 
-    @FXML
-    private void onRdLbr(ActionEvent event) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("AddBorrowedBooks.fxml"));
-        Scene tableView = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(tableView);
-        stage.show();
-    }
-    @FXML
-    private void onRdSlctStudnt(ActionEvent event) throws Exception {
-        //choose to add student or librarian
-    }
-
-    @FXML
-    private void onRdSlctLbr(ActionEvent event) throws Exception {
-        //choose to add student or librarian
-    }
     @FXML
     private void onCancel(ActionEvent event) throws Exception {
         if (Controller.role == 0) {
@@ -233,4 +200,9 @@ public class Edit implements Initializable {
 
     }
 
+    public void onRdSlctStudnt(ActionEvent event) {
+    }
+
+    public void onRdSlctLbr(ActionEvent event) {
+    }
 }

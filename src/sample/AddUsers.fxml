@@ -40,18 +40,18 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="130.0" prefWidth="272.0">
                      <children>
-                        <Label layoutX="24.0" layoutY="71.0" prefHeight="31.0" prefWidth="70.0" text="First Name:" />
-                        <Label layoutX="24.0" layoutY="131.0" prefHeight="25.0" prefWidth="70.0" text="Last Name:" />
-                        <Label layoutX="24.0" layoutY="184.0" prefHeight="25.0" prefWidth="70.0" text="Email:" />
-                        <Label layoutX="322.0" layoutY="131.0" prefHeight="25.0" prefWidth="61.0" text="Login:" />
-                        <Label layoutX="319.0" layoutY="184.0" prefHeight="25.0" prefWidth="61.0" text="Password:" />
+                        <Label layoutX="24.0" layoutY="71.0" prefHeight="31.0" prefWidth="70.0" text="First Name:" textFill="ROYALBLUE" />
+                        <Label layoutX="24.0" layoutY="131.0" prefHeight="25.0" prefWidth="70.0" text="Last Name:" textFill="ROYALBLUE" />
+                        <Label layoutX="24.0" layoutY="184.0" prefHeight="25.0" prefWidth="70.0" text="Email:" textFill="ROYALBLUE" />
+                        <Label layoutX="322.0" layoutY="131.0" prefHeight="25.0" prefWidth="61.0" text="Login:" textFill="ROYALBLUE" />
+                        <Label layoutX="319.0" layoutY="184.0" prefHeight="25.0" prefWidth="61.0" text="Password:" textFill="ROYALBLUE" />
                         <TextField fx:id="txtSName" layoutX="96.0" layoutY="74.0" />
                         <TextField fx:id="txtSLastName" layoutX="96.0" layoutY="131.0" />
                         <TextField fx:id="txtSEmail" layoutX="96.0" layoutY="184.0" />
                         <TextField fx:id="txtSLogin" layoutX="383.0" layoutY="131.0" />
                         <TextField fx:id="txtSPassword" layoutX="383.0" layoutY="184.0" />
-                        <RadioButton fx:id="rbStudent" layoutX="245.0" layoutY="250.0" mnemonicParsing="false" onAction="#onRdSlctStudnt" text="Student" />
-                        <RadioButton fx:id="rbLibrarian" layoutX="319.0" layoutY="250.0" mnemonicParsing="false" onAction="#onRdSlctLbr" text="Librarian" />
+                        <RadioButton fx:id="rbStudent" layoutX="245.0" layoutY="250.0" mnemonicParsing="false" onAction="#onRdSlctStudnt" text="Student" textFill="ROYALBLUE" />
+                        <RadioButton fx:id="rbLibrarian" layoutX="319.0" layoutY="250.0" mnemonicParsing="false" onAction="#onRdSlctLbr" text="Librarian" textFill="ROYALBLUE" />
                         <Label fx:id="lblInfo" layoutX="31.0" layoutY="14.0" prefHeight="18.0" prefWidth="175.0" />
                      </children>
                   </AnchorPane>

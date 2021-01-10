@@ -65,9 +65,9 @@ public class Controller {
     @FXML
     TextField txtTitle;
     @FXML
-    DatePicker txttakenDate;
+    TextField txttakenDate;
     @FXML
-    DatePicker txtReturnDate;
+    TextField txtReturnDate;
 
 
     ///admin window items
@@ -529,6 +529,7 @@ public class Controller {
         tbSbooks.setVisible(true);
         btnSReserve.setVisible(true);
     }
+
 
     //Main Add Button
     @FXML
