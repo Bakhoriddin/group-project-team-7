@@ -3,9 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -18,9 +18,9 @@
          <children>
             <SplitPane dividerPositions="0.17058823529411765" orientation="VERTICAL" prefHeight="342.0" prefWidth="600.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="53.0" prefWidth="598.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="53.0" prefWidth="598.0" style="-fx-background-color: #4169e1;">
                      <children>
-                        <Label alignment="CENTER" layoutX="192.0" layoutY="10.0" prefHeight="25.0" prefWidth="199.0" text="Add Mode">
+                        <Label alignment="TOP_CENTER" layoutX="208.0" layoutY="10.0" prefHeight="25.0" prefWidth="199.0" text="Add Mode" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
@@ -40,9 +40,6 @@
                         <TextField fx:id="txtBAuthor" layoutX="80.0" layoutY="185.0" />
                         <TextField fx:id="txtBSubject" layoutX="424.0" layoutY="79.0" />
                         <TextField fx:id="txtBStatus" layoutX="424.0" layoutY="192.0" />
-                        <RadioButton layoutX="455.0" layoutY="6.0" mnemonicParsing="false" onAction="#onRdStudnt" text="Users" />
-                        <RadioButton layoutX="455.0" layoutY="31.0" mnemonicParsing="false" onAction="#onRdBooks" text="Books" />
-                        <RadioButton fx:id="rdbtnLib" layoutX="455.0" layoutY="55.0" mnemonicParsing="false" onAction="#onRdLbr" text="Borrowed Books" />
                         <Label fx:id="lblInfoBook" layoutX="41.0" layoutY="24.0" prefHeight="18.0" prefWidth="175.0" />
                         <DatePicker fx:id="txtBPublishDate" layoutX="423.0" layoutY="133.0" prefHeight="18.0" prefWidth="162.0" />
                      </children>
@@ -51,10 +48,16 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="58.0" prefWidth="600.0" GridPane.rowIndex="1">
+      <AnchorPane prefHeight="58.0" prefWidth="600.0" style="-fx-background-color: #b0e0e6;" GridPane.rowIndex="1">
          <children>
-            <Button fx:id="btnCancel" layoutX="490.0" layoutY="12.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="25.0" prefWidth="70.0" text="Cancel" />
-            <Button layoutX="390.0" layoutY="12.0" mnemonicParsing="false" onAction="#onEdit" prefHeight="25.0" prefWidth="70.0" text="Finish" />
+            <Button fx:id="btnCancel" layoutX="490.0" layoutY="12.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4682b4;" text="Cancel" textFill="WHITE">
+               <effect>
+                  <ColorAdjust />
+               </effect></Button>
+            <Button layoutX="390.0" layoutY="12.0" mnemonicParsing="false" onAction="#onEdit" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4682b4;" text="Finish" textFill="WHITE">
+               <effect>
+                  <ColorAdjust />
+               </effect></Button>
          </children>
       </AnchorPane>
    </children>

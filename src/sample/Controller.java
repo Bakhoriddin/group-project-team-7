@@ -65,9 +65,9 @@ public class Controller {
     @FXML
     TextField txtTitle;
     @FXML
-    TextField txttakenDate;
+    DatePicker txttakenDate;
     @FXML
-    TextField txtReturnDate;
+    DatePicker txtReturnDate;
 
 
     ///admin window items
@@ -469,9 +469,9 @@ public class Controller {
     public void onDeptor(){
         tbDeptor.setVisible(true);
         tbBorrowedBooks.setVisible(false);
-        tbBooks.setVisible(false);
+        tbLBooks.setVisible(false);
         lblGreetLibrarian.setVisible(false);
-        tbStudents.setVisible(false);
+        tbLStudents.setVisible(false);
     }
     @FXML
     public void onLAdd() {
