@@ -443,9 +443,9 @@ public class Controller {
     @FXML
     public void onBorrowedBooks(){
         tbBorrowedBooks.setVisible(true);
-        tbStudents.setVisible(false);
+        tbLStudents.setVisible(false);
         lblGreetLibrarian.setVisible(false);
-        tbBooks.setVisible(false);
+        tbLBooks.setVisible(false);
         tbDeptor.setVisible(false);
     }
     @FXML

@@ -34,6 +34,8 @@
                             <effect>
                                 <DropShadow />
                             </effect></Button>
+                        <Button layoutX="-5.0" layoutY="185.0" mnemonicParsing="false" onAction="#onBorrowedBooks" prefHeight="85.0" prefWidth="95.0" text="Borrowed Book" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
+                        <Button layoutY="266.0" mnemonicParsing="false" onAction="#onDeptor" prefHeight="85.0" prefWidth="95.0" text="Deptor" textAlignment="CENTER" />
                     </children>
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #ffffffff;">
@@ -44,21 +46,38 @@
                             </effect></Button>
                         <TableView fx:id="tbLStudents" prefHeight="348.0" prefWidth="402.0" visible="false">
                             <columns>
-                                <TableColumn prefWidth="72.0" text="ID" />
-                                <TableColumn text="Name" />
-                                <TableColumn prefWidth="100.0" text="Family Name" />
-                                <TableColumn prefWidth="49.0" text="email" />
+                                <TableColumn fx:id="tcIdL" prefWidth="72.0" text="ID" />
+                                <TableColumn fx:id="tcNameL" text="Name" />
+                                <TableColumn fx:id="tcLastNameL" prefWidth="100.0" text="Family Name" />
+                                <TableColumn fx:id="tcEmailL" prefWidth="49.0" text="email" />
                                 <TableColumn prefWidth="100.0" text="borrowed book" />
                             </columns>
                         </TableView>
                         <TableView fx:id="tbLBooks" prefHeight="348.0" prefWidth="402.0" visible="false">
                             <columns>
-                                <TableColumn prefWidth="57.0" text="ISBN" />
-                                <TableColumn prefWidth="61.0" text="Title" />
-                                <TableColumn prefWidth="68.0" text="Author" />
-                                <TableColumn prefWidth="76.0" text="Subject" />
-                                <TableColumn prefWidth="81.0" text="Publish Date" />
+                                <TableColumn fx:id="tcISBNL" prefWidth="57.0" text="ISBN" />
+                                <TableColumn fx:id="tcTitleL" prefWidth="61.0" text="Title" />
+                                <TableColumn fx:id="tcAuthorL" prefWidth="68.0" text="Author" />
+                                <TableColumn fx:id="tcSubjectL" prefWidth="76.0" text="Subject" />
+                                <TableColumn fx:id="tcPublishDateL" prefWidth="81.0" text="Publish Date" />
                                 <TableColumn prefWidth="57.0" text="Status" />
+                            </columns>
+                        </TableView>
+                        <TableView fx:id="tbBorrowedBooks" prefHeight="348.0" prefWidth="402.0" visible="false">
+                            <columns>
+                                <TableColumn prefWidth="54.0" text="Username" />
+                                <TableColumn prefWidth="56.0" text="ISBN" />
+                                <TableColumn prefWidth="66.0" text="Title" />
+                                <TableColumn prefWidth="79.0" text="Taken Date" />
+                                <TableColumn prefWidth="73.0" text="Return Date" />
+                                <TableColumn prefWidth="73.0" text="Status" />
+                            </columns>
+                        </TableView>
+                        <TableView fx:id="tbDeptor" prefHeight="350.0" prefWidth="402.0" visible="false">
+                            <columns>
+                                <TableColumn fx:id="tcBUsername" prefWidth="89.0" text="Username" />
+                                <TableColumn fx:id="tcBReturn" prefWidth="109.0" text="Return Date" />
+                                <TableColumn fx:id="tcBTitle" prefWidth="96.0" text="Book Title" />
                             </columns>
                         </TableView>
                         <Label fx:id="lblGreetLibrarian" alignment="CENTER" layoutY="161.0" prefHeight="27.0" prefWidth="473.0" text="Welcome to Librarian's Page!" textAlignment="CENTER" textFill="ROYALBLUE">
@@ -72,15 +91,15 @@
         </SplitPane>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #b0e0e6;" GridPane.rowIndex="1">
             <children>
-                <Button fx:id="btnLDelete" layoutX="470.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4682b4;" text="Delete" textFill="WHITE">
+                <Button fx:id="btnLDelete" layoutX="470.0" layoutY="12.0" mnemonicParsing="false" onAction="#onDelete" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4682b4;" text="Delete" textFill="WHITE">
                     <effect>
                         <ColorAdjust />
                     </effect></Button>
-                <Button fx:id="btnLModify" layoutX="370.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4682b4;" text="Modify" textFill="WHITE">
+                <Button fx:id="btnLModify" layoutX="370.0" layoutY="12.0" mnemonicParsing="false" onAction="#onModify" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4682b4;" text="Modify" textFill="WHITE">
                     <effect>
                         <ColorAdjust />
                     </effect></Button>
-                <Button fx:id="btnLAdd" layoutX="270.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4682b4;" text="Add" textFill="WHITE">
+                <Button fx:id="btnLAdd" layoutX="270.0" layoutY="12.0" mnemonicParsing="false" onAction="#onAdd" prefHeight="25.0" prefWidth="70.0" style="-fx-background-color: #4682b4;" text="Add" textFill="WHITE">
                     <effect>
                         <ColorAdjust />
                     </effect></Button>
