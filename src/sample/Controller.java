@@ -190,7 +190,7 @@ public class Controller {
     //Librarian Add Window Items
 
 
-
+    boolean librarianAlreadyExists = false;
     @FXML
     private void onLogin(ActionEvent event) throws Exception {
         Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
@@ -243,19 +243,23 @@ public class Controller {
         Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
         PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=1");
         ResultSet getStmt = get.executeQuery();
-        while (getStmt.next()) {
-            list.add(new Librarian(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password")));
+        if (!librarianAlreadyExists) {
+            while (getStmt.next()) {
+                list.add(new Librarian(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password")));
+            }
+            for (Librarian u : list) {
+                tbLibs.getItems().add(u);
+            }
+            librarianAlreadyExists = true;
         }
-        for (Librarian u : list) {
-            tbLibs.getItems().add(u);
-        }
-        tbLibs.setVisible(true);
-        tbStudents.setVisible(false);
-        tbBooks.setVisible(false);
-        lblGreetAdmin.setVisible(false);
+            tbLibs.setVisible(true);
+            tbStudents.setVisible(false);
+            tbBooks.setVisible(false);
+            lblGreetAdmin.setVisible(false);
+
 
     }
-
+        boolean studentAlreadyExists;
     @FXML
     public void onStudents() throws Exception {
 
@@ -267,19 +271,23 @@ public class Controller {
         Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
         PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=2");
         ResultSet getStmt = get.executeQuery();
+        if (!studentAlreadyExists) {
+            while (getStmt.next()) {
+                list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
+            }
+            for (Students u : list) {
+                tbStudents.getItems().add(u);
+            }
+            studentAlreadyExists = true;
+        }
+            tbLibs.setVisible(false);
+            tbStudents.setVisible(true);
+            tbBooks.setVisible(false);
+            lblGreetAdmin.setVisible(false);
 
-        while (getStmt.next()) {
-            list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
-        }
-        for (Students u : list) {
-            tbStudents.getItems().add(u);
-        }
-        tbLibs.setVisible(false);
-        tbStudents.setVisible(true);
-        tbBooks.setVisible(false);
-        lblGreetAdmin.setVisible(false);
 
     }
+    boolean booksAlreadyExits=false;
 
     @FXML
     public void onBooks() throws SQLException {
@@ -293,16 +301,20 @@ public class Controller {
         Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
         PreparedStatement get = con.prepareStatement("SELECT * FROM BOOKS");
         ResultSet getStmt = get.executeQuery();
-        while (getStmt.next()) {
+        if (!booksAlreadyExits) {
+            while (getStmt.next()) {
                 list.add(new Books(getStmt.getInt("ISBN"), getStmt.getString("title"), getStmt.getString("subject"), getStmt.getString("author"), getStmt.getString("publishDate")));
+            }
+            for (Books u : list) {
+                tbBooks.getItems().add(u);
+            }
+            booksAlreadyExits = true;
         }
-        for (Books u : list) {
-            tbBooks.getItems().add(u);
-        }
-        tbLibs.setVisible(false);
-        tbStudents.setVisible(false);
-        tbBooks.setVisible(true);
-        lblGreetAdmin.setVisible(false);
+            tbLibs.setVisible(false);
+            tbStudents.setVisible(false);
+            tbBooks.setVisible(true);
+            lblGreetAdmin.setVisible(false);
+
 
     }
 
@@ -400,12 +412,14 @@ public class Controller {
         Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
         PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=2");
         ResultSet getStmt = get.executeQuery();
-
-        while (getStmt.next()) {
-            list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
-        }
-        for (Students u : list) {
-            tbLStudents.getItems().add(u);
+        if (!studentAlreadyExists) {
+            while (getStmt.next()) {
+                list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
+            }
+            for (Students u : list) {
+                tbLStudents.getItems().add(u);
+            }
+            studentAlreadyExists=true;
         }
         tbLStudents.setVisible(true);
         tbLBooks.setVisible(false);
@@ -427,11 +441,14 @@ public class Controller {
         Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
         PreparedStatement get = con.prepareStatement("SELECT * FROM BOOKS");
         ResultSet getStmt = get.executeQuery();
-        while (getStmt.next()) {
-            list.add(new Books(getStmt.getInt("ISBN"), getStmt.getString("title"), getStmt.getString("subject"), getStmt.getString("author"), getStmt.getString("publishDate")));
-        }
-        for (Books u : list) {
-            tbLBooks.getItems().add(u);
+        if (!booksAlreadyExits) {
+            while (getStmt.next()) {
+                list.add(new Books(getStmt.getInt("ISBN"), getStmt.getString("title"), getStmt.getString("subject"), getStmt.getString("author"), getStmt.getString("publishDate")));
+            }
+            for (Books u : list) {
+                tbLBooks.getItems().add(u);
+            }
+            booksAlreadyExits = true;
         }
         tbLStudents.setVisible(false);
         tbLBooks.setVisible(true);
