@@ -24,15 +24,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="delete query">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/books/db.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/log1.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/librarian.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/librarian.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ui/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ui/login.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="librarian functions" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -284,14 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610262283492</updated>
     </task>
-    <task id="LOCAL-00005" summary="Added a constructor to catch exceptions in sql">
-      <created>1610116728567</created>
+    <task id="LOCAL-00005" summary="librarian functions">
+      <created>1610267493783</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1610116728567</updated>
+      <updated>1610267493783</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +322,8 @@
     <MESSAGE value="Created a database for borrowed books and users who borrowed it" />
     <MESSAGE value="Added a constructor to catch exceptions in sql" />
     <MESSAGE value="delete query" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a constructor to catch exceptions in sql" />
+    <MESSAGE value="librarian functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="librarian functions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -64,7 +64,10 @@ public class Edit implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        if (Controller.role==1){
+            rbLibrarian.setVisible(false);
+            rbStudent.setVisible(false);
+        }
         if (Controller.libGlobal!=null){
             id= Controller.libGlobal.getId();
             txtSName.setText(Controller.libGlobal.getFirstName());
@@ -96,10 +99,7 @@ public class Edit implements Initializable {
     }
      @FXML
     public void onEdit(ActionEvent event) throws Exception {
-         if (Controller.role==1){
-             rbLibrarian.setVisible(false);
-             rbStudent.setVisible(false);
-         }
+
          Connection con=null;
          if(Controller.mode==0) con= DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
          if(Controller.mode==1) con= DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
