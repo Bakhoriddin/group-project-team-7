@@ -24,13 +24,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="delete query">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="updated Add buttons in UI from Ogay">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/books/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/log/log.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/log.ctrl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/log/log1.dat" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/log1.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/log/logmirror.ctrl" beforeDir="false" afterPath="$PROJECT_DIR$/db/log/logmirror.ctrl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/librarian.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/librarian.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,10 +132,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Program Files/SceneBuilder/SceneBuilder.exe" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -277,21 +278,21 @@
       <option name="project" value="LOCAL" />
       <updated>1610101095649</updated>
     </task>
-    <task id="LOCAL-00004" summary="delete query">
-      <created>1610262283492</created>
+    <task id="LOCAL-00004" summary="updated Add buttons in UI from Ogay">
+      <created>1610195091286</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1610262283492</updated>
+      <updated>1610195091286</updated>
     </task>
-    <task id="LOCAL-00005" summary="Added a constructor to catch exceptions in sql">
-      <created>1610116728567</created>
+    <task id="LOCAL-00005" summary="Added BorrowedBooks/Deptor Buttons and Tables Correspondingly">
+      <created>1610199881817</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1610116728567</updated>
+      <updated>1610199881817</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,14 +325,15 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <MESSAGE value="starting" />
     <MESSAGE value="fromFayyoz" />
-    <MESSAGE value="updated Add buttons in UI from Ogay" />
     <MESSAGE value="Created database for books" />
     <MESSAGE value="removed sample.fxml" />
     <MESSAGE value="Created a database for borrowed books and users who borrowed it" />
     <MESSAGE value="Added a constructor to catch exceptions in sql" />
     <MESSAGE value="delete query" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete query" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a constructor to catch exceptions in sql" />
+    <MESSAGE value="librarian functions" />
+    <MESSAGE value="updated Add buttons in UI from Ogay" />
+    <MESSAGE value="Added BorrowedBooks/Deptor Buttons and Tables Correspondingly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added BorrowedBooks/Deptor Buttons and Tables Correspondingly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -339,6 +341,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.RuntimeException" package="java.lang" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

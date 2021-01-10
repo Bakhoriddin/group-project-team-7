@@ -27,7 +27,8 @@ public class Controller {
     PasswordField txtPassword;
     @FXML
     Label lblInfo;
-
+    @FXML
+    Label lblInfoLogin;
 
     //Librarian Students AddMode Items (Used also in Admin Students AddMode)
     @FXML
@@ -125,6 +126,10 @@ public class Controller {
     @FXML
     private TableView tbLBooks;
     @FXML
+    private TableView tbBorrowedBooks;
+    @FXML
+    private TableView tbDeptor;
+    @FXML
     private Button btnLAdd;
     @FXML
     private Button btnLModify;
@@ -140,6 +145,16 @@ public class Controller {
     private TableColumn<Books, String> tcSubject;
     @FXML
     private TableColumn<Books, String> tcPublishDate;
+    @FXML
+    private TableColumn<Books, Integer> tcISBNL;
+    @FXML
+    private TableColumn<Books, String> tcTitleL;
+    @FXML
+    private TableColumn<Books, String> tcAuthorL;
+    @FXML
+    private TableColumn<Books, String> tcSubjectL;
+    @FXML
+    private TableColumn<Books, String> tcPublishDateL;
     public static Librarian libGlobal=null;
     public static Students studentGlobal=null;
     public static Books bookGlobal=null;
@@ -185,7 +200,7 @@ public class Controller {
         if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
 
             while (getStmt.next()) {
-
+                System.out.println(getStmt.getString("Login"));
                 if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
 
                     if (getStmt.getInt("Role") == 0) {
@@ -200,7 +215,7 @@ public class Controller {
                     }
                     break;
                 } else
-                    lblInfo.setText("Wrong login and password");
+                    lblInfoLogin.setText("Wrong login and password");
             }
             con.close();
         }
@@ -295,75 +310,155 @@ public class Controller {
 
     @FXML
     public void onModify(ActionEvent event) throws Exception {
-        if (tbStudents.isVisible() || tbLibs.isVisible()) {   //if Students table opened = Student Add List opened
-            if (tbLibs.isVisible()) libGlobal=(Librarian)  tbLibs.getSelectionModel().getSelectedItem();
-            else if(tbStudents.isVisible()) studentGlobal=(Students)tbStudents.getSelectionModel().getSelectedItem();
-            openPage(event, "AddUsers");
-            role=0 ;
-            mode=0;
+        if(tbStudents!=null){
+             if (tbStudents.isVisible() || tbLibs.isVisible()) {   //if Students table opened = Student Add List opened
+                 if (tbLibs.isVisible()) libGlobal=(Librarian)  tbLibs.getSelectionModel().getSelectedItem();
+                 else if(tbStudents.isVisible()) studentGlobal=(Students)tbStudents.getSelectionModel().getSelectedItem();
+                 openPage(event, "AddUsers");
+                 role=0 ;
+                 mode=0;
 
-        } else if (tbBooks.isVisible()) {  //if Books table opened = Books Add List opened
-            bookGlobal=(Books)tbBooks.getSelectionModel().getSelectedItem();
-            openPage(event, "AddBooks");
+             } else if (tbBooks.isVisible()) {  //if Books table opened = Books Add List opened
+                 bookGlobal=(Books)tbBooks.getSelectionModel().getSelectedItem();
+                 openPage(event, "AddBooks");
 
-            mode=1;
+                 mode=1;
+             }
+            tbLibs.setVisible(false);
+            tbStudents.setVisible(false);
+            tbBooks.setVisible(false);
+            lblGreetAdmin.setVisible(false);
         }
-        tbLibs.setVisible(false);
-        tbStudents.setVisible(false);
-        tbBooks.setVisible(false);
-        lblGreetAdmin.setVisible(false);
+        else if(tbLStudents!=null) {
+            if (tbLStudents.isVisible()) {
+                studentGlobal = (Students) tbLStudents.getSelectionModel().getSelectedItem();
+                openPage(event, "AddUsers");
+                role = 1;
+                mode = 0;
+            } else if (tbLBooks.isVisible()) {
+                bookGlobal = (Books) tbLBooks.getSelectionModel().getSelectedItem();
+                openPage(event, "AddBooks");
+                mode = 1;
+            }
+            tbLStudents.setVisible(false);
+            tbLBooks.setVisible(false);
+            lblGreetLibrarian.setVisible(false);
+        }
+
 
     }
 
     @FXML
     public void onDelete() throws Exception{
         PreparedStatement delete=null;
-        if (tbLibs.isVisible()) {
-            libGlobal=(Librarian)  tbLibs.getSelectionModel().getSelectedItem();
-            Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
-            delete= con.prepareStatement("DELETE FROM Users WHERE UsersId="+libGlobal.getId());
+        if(tbStudents!=null) {
+            if (tbLibs.isVisible()) {
+                libGlobal = (Librarian) tbLibs.getSelectionModel().getSelectedItem();
+                Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+                delete = con.prepareStatement("DELETE FROM Users WHERE UsersId=" + libGlobal.getId());
+            } else if (tbStudents.isVisible()) {
+                studentGlobal = (Students) tbStudents.getSelectionModel().getSelectedItem();
+                Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+                delete = con.prepareStatement("DELETE FROM Users WHERE UsersId=" + studentGlobal.getId());
+            } else if (tbBooks.isVisible()) {
+                bookGlobal = (Books) tbBooks.getSelectionModel().getSelectedItem();
+                Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
+                delete = con.prepareStatement("DELETE FROM Books WHERE ISBN=" + bookGlobal.getISBN());
+            }
+            lblGreetAdmin.setVisible(false);
+            tbLibs.setVisible(false);
+            tbStudents.setVisible(false);
+            tbBooks.setVisible(false);
         }
-        else if(tbStudents.isVisible()){
-            studentGlobal=(Students)tbStudents.getSelectionModel().getSelectedItem();
-            Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
-            delete= con.prepareStatement("DELETE FROM Users WHERE UsersId="+studentGlobal.getId());
-        }
-        else if (tbBooks.isVisible()) {
-            bookGlobal = (Books) tbBooks.getSelectionModel().getSelectedItem();
-            Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
-            delete= con.prepareStatement("DELETE FROM Books WHERE ISBN="+bookGlobal.getISBN());
+        else   if(tbLStudents!=null) {
+            if (tbLStudents.isVisible()) {
+                studentGlobal = (Students) tbLStudents.getSelectionModel().getSelectedItem();
+                Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+                delete = con.prepareStatement("DELETE FROM Users WHERE UsersId=" + studentGlobal.getId());
+            } else if (tbLBooks.isVisible()) {
+                bookGlobal = (Books) tbLBooks.getSelectionModel().getSelectedItem();
+                Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
+                delete = con.prepareStatement("DELETE FROM Books WHERE ISBN=" + bookGlobal.getISBN());
+            }
+            lblGreetLibrarian.setVisible(false);
+            tbLStudents.setVisible(false);
+            tbLBooks.setVisible(false);
         }
         delete.execute();
-        lblGreetAdmin.setVisible(false);
-        tbLibs.setVisible(false);
-        tbStudents.setVisible(false);
-        tbBooks.setVisible(false);
+
 
     }
 
     ///librarian window methods
     @FXML
-    public void onLStudents() {
-        tbStudents.setVisible(true);
-        tbBooks.setVisible(false);
-        lblGreetLibrarian.setVisible(false);
+    public void onLStudents() throws Exception{
+        tcIdL.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tcNameL.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        tcLastNameL.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        tcEmailL.setCellValueFactory(new PropertyValueFactory<>("email"));
+        ArrayList<Students> list = new ArrayList<>();
+        Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+        PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=2");
+        ResultSet getStmt = get.executeQuery();
 
-        ///librarian window methods
-    }
-
-    @FXML
-    public void onLBooks() {
-        tbStudents.setVisible(false);
-        tbBooks.setVisible(true);
-        lblGreetLibrarian.setVisible(false);
-
-    }
-
-    @FXML
-    public void onLAdd() {
-        tbLStudents.setVisible(false);
+        while (getStmt.next()) {
+            list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
+        }
+        for (Students u : list) {
+            tbLStudents.getItems().add(u);
+        }
+        tbLStudents.setVisible(true);
         tbLBooks.setVisible(false);
         lblGreetLibrarian.setVisible(false);
+        tbBorrowedBooks.setVisible(false);
+        tbDeptor.setVisible(false);
+
+
+    }
+
+    @FXML
+    public void onLBooks() throws Exception{
+        tcISBNL.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
+        tcTitleL.setCellValueFactory(new PropertyValueFactory<>("title"));
+        tcAuthorL.setCellValueFactory(new PropertyValueFactory<>("author"));
+        tcSubjectL.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        tcPublishDateL.setCellValueFactory(new PropertyValueFactory<>("publishDate"));
+        ArrayList<Books> list = new ArrayList<>();
+        Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
+        PreparedStatement get = con.prepareStatement("SELECT * FROM BOOKS");
+        ResultSet getStmt = get.executeQuery();
+        while (getStmt.next()) {
+            list.add(new Books(getStmt.getInt("ISBN"), getStmt.getString("title"), getStmt.getString("subject"), getStmt.getString("author"), getStmt.getString("publishDate")));
+        }
+        for (Books u : list) {
+            tbLBooks.getItems().add(u);
+        }
+        tbLStudents.setVisible(false);
+        tbLBooks.setVisible(true);
+        lblGreetLibrarian.setVisible(false);
+        tbBorrowedBooks.setVisible(false);
+        tbDeptor.setVisible(false);
+
+    }
+    @FXML
+    public void onBorrowedBooks(){
+        tbBorrowedBooks.setVisible(true);
+        tbLStudents.setVisible(false);
+        lblGreetLibrarian.setVisible(false);
+        tbLBooks.setVisible(false);
+        tbDeptor.setVisible(false);
+    }
+    @FXML
+    public void onDeptor(){
+        tbDeptor.setVisible(true);
+        tbBorrowedBooks.setVisible(false);
+        tbBooks.setVisible(false);
+        lblGreetLibrarian.setVisible(false);
+        tbStudents.setVisible(false);
+    }
+    @FXML
+    public void onLAdd() {
+
         btnLAdd.setDisable(false);
         btnLModify.setDisable(true);
         btnLDelete.setDisable(true);
@@ -403,6 +498,7 @@ public class Controller {
         btnSReserve.setVisible(false);
     }
 
+
     @FXML
     public void onSBooks() {
         lblGreetStudent.setVisible(false);
@@ -417,20 +513,33 @@ public class Controller {
         btnSReserve.setVisible(true);
     }
 
-
-
     //Main Add Button
     @FXML
     private void onAdd(ActionEvent event) throws Exception {
-        System.out.println(tbBooks.isVisible()+" "+tbStudents.isVisible());
+        bookGlobal=null;
+        studentGlobal=null;
+        listsBooks=null;
+        if(tbStudents!=null) {
             if (tbStudents.isVisible() || tbLibs.isVisible()) {   //if Students table opened = Student Add List opened
-            openPage(event, "AddUsers");
-            role=0 ;
-            mode=0;
-        } else if (tbBooks.isVisible()) {  //if Books table opened = Books Add List opened
-            openPage(event, "AddBooks");
-            mode=1;
+                openPage(event, "AddUsers");
+                role = 0;
+                mode = 0;
+            } else if (tbBooks.isVisible()) {  //if Books table opened = Books Add List opened
+                openPage(event, "AddBooks");
+                mode = 1;
 
+            }
+        }
+        else  if(tbLStudents!=null) {
+        if (tbLStudents.isVisible()) {   //if Students table opened = Student Add List opened
+                openPage(event, "AddUsers");
+                role = 1;
+                mode = 0;
+            } else if (tbLBooks.isVisible()) {  //if Books table opened = Books Add List opened
+                openPage(event, "AddBooks");
+                mode = 1;
+
+            }
         }
     }
 
