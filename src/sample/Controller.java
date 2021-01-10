@@ -231,7 +231,7 @@ public class Controller {
                         openPage(event, "admin");
                         role = 0;
                     } else if (getStmt.getInt("Role") == 1) {
-                       openPage(event, "librarian");
+                        openPage(event, "librarian");
                         role = 1;
                     } else if (getStmt.getInt("Role") == 2) {
                         studentGlobal= new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), "");
@@ -278,14 +278,14 @@ public class Controller {
             }
             librarianAlreadyExists = true;
         }
-            tbLibs.setVisible(true);
-            tbStudents.setVisible(false);
-            tbBooks.setVisible(false);
-            lblGreetAdmin.setVisible(false);
+        tbLibs.setVisible(true);
+        tbStudents.setVisible(false);
+        tbBooks.setVisible(false);
+        lblGreetAdmin.setVisible(false);
 
 
     }
-        boolean studentAlreadyExists;
+    boolean studentAlreadyExists;
     @FXML
     public void onStudents() throws Exception {
 
@@ -317,10 +317,10 @@ public class Controller {
             }
             studentAlreadyExists = true;
         }
-            tbLibs.setVisible(false);
-            tbStudents.setVisible(true);
-            tbBooks.setVisible(false);
-            lblGreetAdmin.setVisible(false);
+        tbLibs.setVisible(false);
+        tbStudents.setVisible(true);
+        tbBooks.setVisible(false);
+        lblGreetAdmin.setVisible(false);
 
 
     }
@@ -347,10 +347,10 @@ public class Controller {
             }
             booksAlreadyExits = true;
         }
-            tbLibs.setVisible(false);
-            tbStudents.setVisible(false);
-            tbBooks.setVisible(true);
-            lblGreetAdmin.setVisible(false);
+        tbLibs.setVisible(false);
+        tbStudents.setVisible(false);
+        tbBooks.setVisible(true);
+        lblGreetAdmin.setVisible(false);
 
 
     }
@@ -360,19 +360,19 @@ public class Controller {
     @FXML
     public void onModify(ActionEvent event) throws Exception {
         if(tbStudents!=null){
-             if (tbStudents.isVisible() || tbLibs.isVisible()) {   //if Students table opened = Student Add List opened
-                 if (tbLibs.isVisible()) libGlobal=(Librarian)  tbLibs.getSelectionModel().getSelectedItem();
-                 else if(tbStudents.isVisible()) studentGlobal=(Students)tbStudents.getSelectionModel().getSelectedItem();
-                 openPage(event, "AddUsers");
-                 role=0 ;
-                 mode=0;
+            if (tbStudents.isVisible() || tbLibs.isVisible()) {   //if Students table opened = Student Add List opened
+                if (tbLibs.isVisible()) libGlobal=(Librarian)  tbLibs.getSelectionModel().getSelectedItem();
+                else if(tbStudents.isVisible()) studentGlobal=(Students)tbStudents.getSelectionModel().getSelectedItem();
+                openPage(event, "AddUsers");
+                role=0 ;
+                mode=0;
 
-             } else if (tbBooks.isVisible()) {  //if Books table opened = Books Add List opened
-                 bookGlobal=(Books)tbBooks.getSelectionModel().getSelectedItem();
-                 openPage(event, "AddBooks");
+            } else if (tbBooks.isVisible()) {  //if Books table opened = Books Add List opened
+                bookGlobal=(Books)tbBooks.getSelectionModel().getSelectedItem();
+                openPage(event, "AddBooks");
 
-                 mode=1;
-             }
+                mode=1;
+            }
             tbLibs.setVisible(false);
             tbStudents.setVisible(false);
             tbBooks.setVisible(false);
@@ -405,19 +405,28 @@ public class Controller {
     @FXML
     public void onDelete() throws Exception{
         PreparedStatement delete=null;
+        PreparedStatement get = null;
+        ResultSet getStmt = null;
+        int role = 0;
+        ArrayList<Librarian> list1 = new ArrayList<>();
+        ArrayList<Students> list2 = new ArrayList<>();
+        ArrayList<Books> list3 = new ArrayList<>();
         if(tbStudents!=null) {
             if (tbLibs.isVisible()) {
                 libGlobal = (Librarian) tbLibs.getSelectionModel().getSelectedItem();
                 Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
                 delete = con.prepareStatement("DELETE FROM Users WHERE UsersId=" + libGlobal.getId());
+                role = 1;
             } else if (tbStudents.isVisible()) {
                 studentGlobal = (Students) tbStudents.getSelectionModel().getSelectedItem();
                 Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
                 delete = con.prepareStatement("DELETE FROM Users WHERE UsersId=" + studentGlobal.getId());
+                role = 2;
             } else if (tbBooks.isVisible()) {
                 bookGlobal = (Books) tbBooks.getSelectionModel().getSelectedItem();
                 Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
                 delete = con.prepareStatement("DELETE FROM Books WHERE ISBN=" + bookGlobal.getISBN());
+                role = 3;
             }
             lblGreetAdmin.setVisible(false);
             tbLibs.setVisible(false);
@@ -429,18 +438,65 @@ public class Controller {
                 studentGlobal = (Students) tbLStudents.getSelectionModel().getSelectedItem();
                 Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
                 delete = con.prepareStatement("DELETE FROM Users WHERE UsersId=" + studentGlobal.getId());
+                role = 2;
             } else if (tbLBooks.isVisible()) {
                 bookGlobal = (Books) tbLBooks.getSelectionModel().getSelectedItem();
                 Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
                 delete = con.prepareStatement("DELETE FROM Books WHERE ISBN=" + bookGlobal.getISBN());
+                role = 3;
             }
             lblGreetLibrarian.setVisible(false);
             tbLStudents.setVisible(false);
             tbLBooks.setVisible(false);
         }
         delete.execute();
-
-
+        if(role != 0) {
+            if(role == 1){
+                Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+                get = con.prepareStatement("SELECT * FROM Users WHERE Role=1"); //updating librarians table
+                getStmt = get.executeQuery();
+                while (getStmt.next()) {
+                    list1.add(new Librarian(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password")));
+                }
+                tbLibs.getItems().clear();
+                for (Librarian u : list1) {
+                    tbLibs.getItems().add(u);
+                }
+            }
+            else if(role == 2) {
+                Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+                Connection con1 = DriverManager.getConnection("jdbc:derby:./borrowed;", "user", "pass");
+                PreparedStatement borrow= con1.prepareStatement("SELECT * FROM BORROWED_BOOKS where returned = false");
+                get = con.prepareStatement("SELECT * FROM Users WHERE Role=2");
+                ResultSet borrowStmt=borrow.executeQuery();
+                getStmt = get.executeQuery();
+                while (getStmt.next()) {
+                    String taken="";
+                    while (borrowStmt.next()){
+                        if (borrowStmt.getString("userName").equals(getStmt.getString("FirstName")))
+                            taken+=borrowStmt.getString("borrowedBookName");
+                    }
+                    list2.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), taken));
+                }
+                tbStudents.getItems().clear();
+                for (Students u : list2) {
+                    tbStudents.getItems().add(u);
+                }
+            }
+            else if(role == 3) {
+                Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
+                get = con.prepareStatement("SELECT * FROM BOOKS");//updating books table
+                getStmt = get.executeQuery();
+                while (getStmt.next()) {
+                    list3.add(new Books(getStmt.getInt("ISBN"), getStmt.getString("title"), getStmt.getString("subject"), getStmt.getString("author"), getStmt.getString("publishDate")));
+                }
+                tbBooks.getItems().clear();
+                for (Books u : list3) {
+                    tbBooks.getItems().add(u);
+                }
+            }
+            else{}
+        }
     }
 
     ///librarian window methods
@@ -521,21 +577,21 @@ public class Controller {
         PreparedStatement get = con.prepareStatement("SELECT * FROM BORROWED_BOOKS");
         ResultSet getStmt = get.executeQuery();
 
-            while (getStmt.next()) {
+        while (getStmt.next()) {
 
-                list.add(new Borrowed(getStmt.getString("userName"), getStmt.getString("borrowedBookName"),String.valueOf( getStmt.getInt("borrowedBookIsbn")), getStmt.getString("takenDate"), getStmt.getString("returnDate"),getStmt.getBoolean("returned")));
-            }
-            for (Borrowed u : list) {
-                tbBorrowedBooks.getItems().add(u);
-            }
+            list.add(new Borrowed(getStmt.getString("userName"), getStmt.getString("borrowedBookName"),String.valueOf( getStmt.getInt("borrowedBookIsbn")), getStmt.getString("takenDate"), getStmt.getString("returnDate"),getStmt.getBoolean("returned")));
+        }
+        for (Borrowed u : list) {
+            tbBorrowedBooks.getItems().add(u);
+        }
 
         tbBorrowedBooks.setVisible(true);
         tbLStudents.setVisible(false);
         lblGreetLibrarian.setVisible(false);
         tbLBooks.setVisible(false);
         tbDeptor.setVisible(false);
-}
-//I can't do it
+    }
+    //I can't do it
     @FXML
     public void onDeptor() throws Exception{
         tcDUsername.setCellValueFactory(new PropertyValueFactory<>("user"));
@@ -575,9 +631,9 @@ public class Controller {
         lblSFamName.setVisible(true);
         lblSid.setVisible(true);
         lblSEmail.setVisible(true);
-       // listsBooks.setVisible(true);
-       // lblCurFine.setVisible(true);
-       // lblSBorrowed.setVisible(true);
+        // listsBooks.setVisible(true);
+        // lblCurFine.setVisible(true);
+        // lblSBorrowed.setVisible(true);
         tbSbooks.setVisible(false);
         btnSReserve.setVisible(false);
     }
@@ -635,7 +691,7 @@ public class Controller {
             }
         }
         else  if(tbLStudents!=null) {
-        if (tbLStudents.isVisible()) {   //if Students table opened = Student Add List opened
+            if (tbLStudents.isVisible()) {   //if Students table opened = Student Add List opened
                 openPage(event, "AddUsers");
                 role = 1;
                 mode = 0;
@@ -644,10 +700,10 @@ public class Controller {
                 mode = 1;
 
             }
-        else if(tbBorrowedBooks.isVisible()){
-            openPage(event, "AddBorrowedBooks");
-            mode=2;
-        }
+            else if(tbBorrowedBooks.isVisible()){
+                openPage(event, "AddBorrowedBooks");
+                mode=2;
+            }
         }
     }
 
