@@ -24,7 +24,7 @@ public class Controller {
     @FXML
     TextField txtLogin;
     @FXML
-    TextField txtPassword;
+    PasswordField txtPassword;
     @FXML
     Label lblInfo;
 
@@ -40,6 +40,7 @@ public class Controller {
     TextField txtSLogin;
     @FXML
     TextField txtSPassword;
+
 
     //Librarian Books AddMode Items (Used also in Admin Students AddMode)
     @FXML
@@ -102,6 +103,8 @@ public class Controller {
     @FXML
     private Button btnLBooks;
     @FXML
+    private Label lblGreetLibrarian;
+    @FXML
     private TableColumn<Students, Integer> tcId;
     @FXML
     private TableColumn<Students, String> tcName;
@@ -128,8 +131,6 @@ public class Controller {
     @FXML
     private Button btnLDelete;
     @FXML
-    private Label lblGreetLibrarian;
-    @FXML
     private TableColumn<Books, Integer> tcISBN;
     @FXML
     private TableColumn<Books, String> tcTitle;
@@ -143,6 +144,33 @@ public class Controller {
     public static Students studentGlobal=null;
     public static Books bookGlobal=null;
     public  static int mode;//users mode is 0, books mode is 1, registration mode is 2
+
+    ///student window items
+    @FXML
+    private Button btnSDetails;
+    @FXML
+    private Button btnSBooks;
+    @FXML
+    private TableView tbSbooks;
+    @FXML
+    private Label lblSName;
+    @FXML
+    private Label lblSFamName;
+    @FXML
+    private Label lblSid;
+    @FXML
+    private Label lblSEmail;
+    @FXML
+    private Label lblSBorrowed;
+    @FXML
+    private Button btnSReserve;
+    @FXML
+    private Label lblCurFine;
+    @FXML
+    private ListView listsBooks;
+    @FXML
+    private Label lblGreetStudent;
+
 
     //Librarian Add Window Items
 
@@ -283,6 +311,7 @@ public class Controller {
         tbLibs.setVisible(false);
         tbStudents.setVisible(false);
         tbBooks.setVisible(false);
+        lblGreetAdmin.setVisible(false);
 
     }
 
@@ -359,6 +388,36 @@ public class Controller {
         btnLModify.setDisable(true);
         btnLDelete.setDisable(false);
     }
+
+
+    public void onSDetails() {
+        lblGreetStudent.setVisible(false);
+        lblSName.setVisible(true);
+        lblSFamName.setVisible(true);
+        lblSid.setVisible(true);
+        lblSEmail.setVisible(true);
+        listsBooks.setVisible(true);
+        lblCurFine.setVisible(true);
+        lblSBorrowed.setVisible(true);
+        tbSbooks.setVisible(false);
+        btnSReserve.setVisible(false);
+    }
+
+    @FXML
+    public void onSBooks() {
+        lblGreetStudent.setVisible(false);
+        lblSName.setVisible(false);
+        lblSFamName.setVisible(false);
+        lblSid.setVisible(false);
+        lblSEmail.setVisible(false);
+        listsBooks.setVisible(false);
+        lblCurFine.setVisible(false);
+        lblSBorrowed.setVisible(false);
+        tbSbooks.setVisible(true);
+        btnSReserve.setVisible(true);
+    }
+
+
 
     //Main Add Button
     @FXML
