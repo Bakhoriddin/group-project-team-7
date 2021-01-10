@@ -220,6 +220,8 @@ public class Controller {
                        openPage(event, "librarian");
                         role = 1;
                     } else if (getStmt.getInt("Role") == 2) {
+                        studentGlobal= new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), "");
+
                         openPage(event, "student");
                         role = 2;
                     }
@@ -580,6 +582,10 @@ public class Controller {
 
 
     public void onSDetails() {
+        lblSid.setText(String.valueOf( studentGlobal.getId()));
+        lblSName.setText(studentGlobal.getFirstName());
+        lblSFamName.setText(studentGlobal.getLastName());
+        lblSEmail.setText(studentGlobal.getEmail());
         lblGreetStudent.setVisible(false);
         lblSName.setVisible(true);
         lblSFamName.setVisible(true);
