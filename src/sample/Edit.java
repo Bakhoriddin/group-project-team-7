@@ -52,7 +52,18 @@ public class Edit implements Initializable {
     TextField txtBStatus;
     @FXML
     private Label lblInfoBook;
-
+    @FXML
+    TextField txtUserName;
+    @FXML
+    TextField txtISBN;
+    @FXML
+    TextField txtTitle;
+    @FXML
+    DatePicker txtTakenDate;
+    @FXML
+    DatePicker txtReturnDate;
+    @FXML
+    CheckBox cbReturned;
     private void back(ActionEvent event) throws Exception{
         if (Controller.role == 0) {
             Controller.openPage(event, "Admin");
@@ -69,6 +80,7 @@ public class Edit implements Initializable {
             if (Controller.role == 1) {
                 rbLibrarian.setVisible(false);
                 rbStudent.setVisible(false);
+                rbStudent.setSelected(true);
             }
         }
         if (Controller.libGlobal!=null){
@@ -99,6 +111,17 @@ public class Edit implements Initializable {
             LocalDate date= LocalDate.parse(Controller.bookGlobal.getPublishDate(), formatter);
             txtBPublishDate.setValue(date);
         }
+        else if (Controller.borrowedGlobal!=null){
+             txtISBN.setText(Controller.borrowedGlobal.getIsbn());
+             txtTitle.setText(Controller.borrowedGlobal.getTitle());
+            txtUserName.setText(Controller.borrowedGlobal.getUser());
+            DateTimeFormatter formatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate date= LocalDate.parse(Controller.borrowedGlobal.getTaken(), formatter);
+            txtTakenDate.setValue(date);
+            date= LocalDate.parse(Controller.borrowedGlobal.getReturned(), formatter);
+            txtReturnDate.setValue(date);
+            cbReturned.setSelected(Controller.borrowedGlobal.isStatus());
+        }
     }
      @FXML
     public void onEdit(ActionEvent event) throws Exception {
@@ -106,6 +129,7 @@ public class Edit implements Initializable {
          Connection con=null;
          if(Controller.mode==0) con= DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
          if(Controller.mode==1) con= DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
+         if(Controller.mode==2) con= DriverManager.getConnection("jdbc:derby:./borrowed;", "user", "pass");
          if (Controller.libGlobal!=null || Controller.studentGlobal!=null){
              String firstName = txtSName.getText();
              String lastName = txtSLastName.getText();
@@ -129,6 +153,18 @@ public class Edit implements Initializable {
              String publishDate=txtBPublishDate.getValue().toString();
              PreparedStatement update= con.prepareStatement("UPDATE Books SET isbn="+isbn+" ,title='"+title+"', subject='"+subject+"', author='"+author+"', publishDate='"+publishDate+"' WHERE ISBN="+Controller.bookGlobal.getISBN());
              update.execute();
+             back(event);
+         }
+         else if (Controller.borrowedGlobal!=null){
+             int isbn=Integer.parseInt( txtISBN.getText());
+             String title= txtTitle.getText();
+             String user=txtUserName.getText();
+             String taken=txtTakenDate.getValue().toString();
+             String returned=txtReturnDate.getValue().toString();
+             boolean check=cbReturned.isSelected();
+
+             PreparedStatement add = con.prepareStatement("UPDATE  BORROWED_BOOKS SET userName='"+user+"', borrowedBookName ='" + title + "', borrowedBookIsbn=  " + isbn + ",   takenDate='" + taken + "', returnDate= '" + returned +"', returned= "+check+" WHERE borrowedBookIsbn="+Controller.borrowedGlobal.getIsbn());
+             add.execute();
              back(event);
          }
          else {
@@ -171,6 +207,18 @@ public class Edit implements Initializable {
                  String author=txtBAuthor.getText();
                  String publishDate=txtBPublishDate.getValue().toString();
                  PreparedStatement add = con.prepareStatement("INSERT INTO Books (ISBN, title, subject, author, publishDate) VALUES(" + isbn + ",'" + title + "', '" + subject + "','" + author + "','" + publishDate +"')");
+                 add.execute();
+                 back(event);
+             }
+             else if(Controller.mode==2){
+                 int isbn=Integer.parseInt( txtISBN.getText());
+                 String title= txtTitle.getText();
+                 String user=txtUserName.getText();
+                 String taken=txtTakenDate.getValue().toString();
+                 String returned=txtReturnDate.getValue().toString();
+                 boolean check=cbReturned.isSelected();
+
+                 PreparedStatement add = con.prepareStatement("INSERT INTO BORROWED_BOOKS (userName, borrowedBookName, borrowedBookIsbn,   takenDate, returnDate, returned) VALUES('" + user + "','" + title + "', " + isbn + ",'" + taken + "','" + returned +"', "+check+")");
                  add.execute();
                  back(event);
              }

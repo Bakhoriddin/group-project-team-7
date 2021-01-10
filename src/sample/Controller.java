@@ -16,7 +16,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class Controller {
@@ -58,16 +60,7 @@ public class Controller {
     TextField txtBStatus;
 
     //Admin Borrowed Books AddMode Items
-    @FXML
-    TextField txtUsername;
-    @FXML
-    TextField txtISBN;
-    @FXML
-    TextField txtTitle;
-    @FXML
-    TextField txttakenDate;
-    @FXML
-    TextField txtReturnDate;
+
 
 
     ///admin window items
@@ -186,9 +179,26 @@ public class Controller {
     @FXML
     private Label lblGreetStudent;
 
-
+    @FXML
+    private TableColumn<Borrowed, String> tcBISBN;
+    @FXML
+    private TableColumn<Borrowed, String> tcBTitle;
+    @FXML
+    private TableColumn<Borrowed, String> tcTaken;
+    @FXML
+    private TableColumn<Borrowed, String> tcReturn;
+    @FXML
+    private TableColumn<Borrowed, Boolean> tcBStatus;
+    @FXML
+    private TableColumn<Borrowed, String> tcBUser;
+    @FXML
+    private TableColumn<Borrowed, String> tcDReturn;
+    @FXML
+    private TableColumn<Borrowed, Boolean> tcDTitle;
+    @FXML
+    private TableColumn<Borrowed, String> tcDUsername;
     //Librarian Add Window Items
-
+    public static Borrowed borrowedGlobal;
 
     boolean librarianAlreadyExists = false;
     @FXML
@@ -364,6 +374,11 @@ public class Controller {
                 openPage(event, "AddBooks");
                 mode = 1;
             }
+            else if(tbBorrowedBooks.isVisible()){
+                borrowedGlobal=(Borrowed)tbBorrowedBooks.getSelectionModel().getSelectedItem();
+                openPage(event, "AddBorrowedBooks");
+                mode=2;
+            }
             tbLStudents.setVisible(false);
             tbLBooks.setVisible(false);
             lblGreetLibrarian.setVisible(false);
@@ -480,21 +495,61 @@ public class Controller {
 
     }
     @FXML
-    public void onBorrowedBooks(){
+    public void onBorrowedBooks() throws Exception{
+        tcBUser.setCellValueFactory(new PropertyValueFactory<>("user"));
+        tcBISBN.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        tcBTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        tcTaken.setCellValueFactory(new PropertyValueFactory<>("taken"));
+        tcReturn.setCellValueFactory(new PropertyValueFactory<>("returned"));
+        tcBStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        ArrayList<Borrowed> list = new ArrayList<>();
+        Connection con = DriverManager.getConnection("jdbc:derby:./borrowed;", "user", "pass");
+        PreparedStatement get = con.prepareStatement("SELECT * FROM BORROWED_BOOKS");
+        ResultSet getStmt = get.executeQuery();
+
+            while (getStmt.next()) {
+
+                list.add(new Borrowed(getStmt.getString("userName"), getStmt.getString("borrowedBookName"),String.valueOf( getStmt.getInt("borrowedBookIsbn")), getStmt.getString("takenDate"), getStmt.getString("returnDate"),getStmt.getBoolean("returned")));
+            }
+            for (Borrowed u : list) {
+                tbBorrowedBooks.getItems().add(u);
+            }
+
         tbBorrowedBooks.setVisible(true);
         tbLStudents.setVisible(false);
         lblGreetLibrarian.setVisible(false);
         tbLBooks.setVisible(false);
         tbDeptor.setVisible(false);
-    }
+}
+//I can't do it
     @FXML
-    public void onDeptor(){
+    public void onDeptor() throws Exception{
+        tcDUsername.setCellValueFactory(new PropertyValueFactory<>("user"));
+        tcDReturn.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        tcDTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        ArrayList<Borrowed> list = new ArrayList<>();
+        Connection con = DriverManager.getConnection("jdbc:derby:./borrowed;", "user", "pass");
+        PreparedStatement get = con.prepareStatement("SELECT * FROM BORROWED_BOOKS WHERE returned=false");
+        ResultSet getStmt = get.executeQuery();
+
+        while (getStmt.next()) {
+
+            list.add(new Borrowed(getStmt.getString("userName"), getStmt.getString("borrowedBookName"),String.valueOf( getStmt.getInt("borrowedBookIsbn")), getStmt.getString("takenDate"), getStmt.getString("returnDate"),getStmt.getBoolean("returned")));
+        }
+        for (Borrowed u : list) {
+            Date date =new Date();
+            SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
+            Date parsingDate=ft.parse(u.getReturned());
+            if (date.after(parsingDate))
+                tbBorrowedBooks.getItems().add(u);
+        }
         tbDeptor.setVisible(true);
         tbBorrowedBooks.setVisible(false);
         tbLBooks.setVisible(false);
         lblGreetLibrarian.setVisible(false);
         tbLStudents.setVisible(false);
     }
+    ////////////////////////////////////
     @FXML
     public void onLAdd() {
 
@@ -559,6 +614,7 @@ public class Controller {
         bookGlobal=null;
         studentGlobal=null;
         listsBooks=null;
+        borrowedGlobal=null;
         if(tbStudents!=null) {
             if (tbStudents.isVisible() || tbLibs.isVisible()) {   //if Students table opened = Student Add List opened
                 openPage(event, "AddUsers");
@@ -580,6 +636,10 @@ public class Controller {
                 mode = 1;
 
             }
+        else if(tbBorrowedBooks.isVisible()){
+            openPage(event, "AddBorrowedBooks");
+            mode=2;
+        }
         }
     }
 
