@@ -269,11 +269,23 @@ public class Controller {
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         ArrayList<Students> list = new ArrayList<>();
         Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+
+        Connection con1 = DriverManager.getConnection("jdbc:derby:./borrowed;", "user", "pass");
+
+        PreparedStatement borrow= con1.prepareStatement("SELECT * FROM BORROWED_BOOKS where returned = false");
         PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=2");
         ResultSet getStmt = get.executeQuery();
+        ResultSet borrowStmt=borrow.executeQuery();
         if (!studentAlreadyExists) {
+
             while (getStmt.next()) {
-                list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
+                String taken="";
+                while (borrowStmt.next()){
+                    System.out.println(borrowStmt.getString("borrowedBookName") +" "+borrowStmt.getString("userName"));
+                    if (borrowStmt.getString("userName").equals(getStmt.getString("FirstName")))
+                        taken+=borrowStmt.getString("borrowedBookName");
+                }
+                list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), taken));
             }
             for (Students u : list) {
                 tbStudents.getItems().add(u);
@@ -410,11 +422,21 @@ public class Controller {
         tcEmailL.setCellValueFactory(new PropertyValueFactory<>("email"));
         ArrayList<Students> list = new ArrayList<>();
         Connection con = DriverManager.getConnection("jdbc:derby:./db;", "user", "pass");
+        Connection con1 = DriverManager.getConnection("jdbc:derby:./borrowed;", "user", "pass");
+
+        PreparedStatement borrow= con1.prepareStatement("SELECT * FROM BORROWED_BOOKS where returned = false");
         PreparedStatement get = con.prepareStatement("SELECT * FROM Users WHERE Role=2");
         ResultSet getStmt = get.executeQuery();
+        ResultSet borrowStmt=borrow.executeQuery();
         if (!studentAlreadyExists) {
             while (getStmt.next()) {
-                list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), getStmt.getInt("Role")));
+                String taken="";
+                while (borrowStmt.next()){
+                    System.out.println(borrowStmt.getString("borrowedBookName") +" "+borrowStmt.getString("userName"));
+                    if (borrowStmt.getString("userName").equals(getStmt.getString("FirstName")))
+                        taken+=borrowStmt.getString("borrowedBookName");
+                }
+                list.add(new Students(getStmt.getInt("UsersId"), getStmt.getString("FirstName"), getStmt.getString("LastName"), getStmt.getString("Email"), getStmt.getString("Login"), getStmt.getString("Password"), taken));
             }
             for (Students u : list) {
                 tbLStudents.getItems().add(u);

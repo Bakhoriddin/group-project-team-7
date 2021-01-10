@@ -7,15 +7,14 @@ public class Students {
     private String email;
     private String login;
     private String password;
-    private String borrowedBooks;
-    Students(int i, String f, String l, String e, String login, String p, int r ){
+    private String borrowedBooks="";
+    Students(int i, String f, String l, String e, String login, String p, String borrowedBooks){
         setId(i);
         setFirstName(f);
         setLastName(l);
         setEmail(e);
         setLogin(login);
         setPassword(p);
-
     }
 
     public int getId() {
