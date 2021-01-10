@@ -122,6 +122,10 @@ public class Controller {
     @FXML
     private TableView tbLBooks;
     @FXML
+    private TableView tbBorrowedBooks;
+    @FXML
+    private TableView tbDeptor;
+    @FXML
     private Button btnLAdd;
     @FXML
     private Button btnLModify;
@@ -159,7 +163,7 @@ public class Controller {
         if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
 
             while (getStmt.next()) {
-
+                System.out.println(getStmt.getString("Login"));
                 if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
 
                     if (getStmt.getInt("Role") == 0) {
@@ -327,8 +331,10 @@ public class Controller {
         tbStudents.setVisible(true);
         tbBooks.setVisible(false);
         lblGreetLibrarian.setVisible(false);
+        tbBorrowedBooks.setVisible(false);
+        tbDeptor.setVisible(false);
 
-        ///librarian window methods
+
     }
 
     @FXML
@@ -336,9 +342,26 @@ public class Controller {
         tbStudents.setVisible(false);
         tbBooks.setVisible(true);
         lblGreetLibrarian.setVisible(false);
+        tbBorrowedBooks.setVisible(false);
+        tbDeptor.setVisible(false);
 
     }
-
+    @FXML
+    public void onBorrowedBooks(){
+        tbBorrowedBooks.setVisible(true);
+        tbStudents.setVisible(false);
+        lblGreetLibrarian.setVisible(false);
+        tbBooks.setVisible(false);
+        tbDeptor.setVisible(false);
+    }
+    @FXML
+    public void onDeptor(){
+        tbDeptor.setVisible(true);
+        tbBorrowedBooks.setVisible(false);
+        tbBooks.setVisible(false);
+        lblGreetLibrarian.setVisible(false);
+        tbStudents.setVisible(false);
+    }
     @FXML
     public void onLAdd() {
         tbLStudents.setVisible(false);
@@ -369,9 +392,7 @@ public class Controller {
         btnLDelete.setDisable(false);
     }
 
-    //** Librarian section add/modify buttons
 
-    //Students Adding Window
 
     //Main Add Button
     @FXML
@@ -393,7 +414,7 @@ public class Controller {
         }
     }
 
-    //Books Adding Window Buttons
+
 
 
     //Radio Buttons
@@ -401,6 +422,7 @@ public class Controller {
 
 
 
+    //Cancel Finish Buttons
 
     @FXML
     private void onCancel(ActionEvent event) throws Exception {
