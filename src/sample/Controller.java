@@ -126,6 +126,10 @@ public class Controller {
     @FXML
     private TableView tbLBooks;
     @FXML
+    private TableView tbBorrowedBooks;
+    @FXML
+    private TableView tbDeptor;
+    @FXML
     private Button btnLAdd;
     @FXML
     private Button btnLModify;
@@ -196,7 +200,7 @@ public class Controller {
         if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
 
             while (getStmt.next()) {
-
+                System.out.println(getStmt.getString("Login"));
                 if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
 
                     if (getStmt.getInt("Role") == 0) {
@@ -406,8 +410,10 @@ public class Controller {
         tbLStudents.setVisible(true);
         tbLBooks.setVisible(false);
         lblGreetLibrarian.setVisible(false);
+        tbBorrowedBooks.setVisible(false);
+        tbDeptor.setVisible(false);
 
-        ///librarian window methods
+
     }
 
     @FXML
@@ -430,9 +436,26 @@ public class Controller {
         tbLStudents.setVisible(false);
         tbLBooks.setVisible(true);
         lblGreetLibrarian.setVisible(false);
+        tbBorrowedBooks.setVisible(false);
+        tbDeptor.setVisible(false);
 
     }
-
+    @FXML
+    public void onBorrowedBooks(){
+        tbBorrowedBooks.setVisible(true);
+        tbStudents.setVisible(false);
+        lblGreetLibrarian.setVisible(false);
+        tbBooks.setVisible(false);
+        tbDeptor.setVisible(false);
+    }
+    @FXML
+    public void onDeptor(){
+        tbDeptor.setVisible(true);
+        tbBorrowedBooks.setVisible(false);
+        tbBooks.setVisible(false);
+        lblGreetLibrarian.setVisible(false);
+        tbStudents.setVisible(false);
+    }
     @FXML
     public void onLAdd() {
 
@@ -475,6 +498,7 @@ public class Controller {
         btnSReserve.setVisible(false);
     }
 
+
     @FXML
     public void onSBooks() {
         lblGreetStudent.setVisible(false);
@@ -488,8 +512,6 @@ public class Controller {
         tbSbooks.setVisible(true);
         btnSReserve.setVisible(true);
     }
-
-
 
     //Main Add Button
     @FXML
