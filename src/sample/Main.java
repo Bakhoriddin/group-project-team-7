@@ -18,8 +18,6 @@ public class Main extends Application  implements Runnable {
         primaryStage.show();
     }
 
-    public Main() throws SQLException {
-    }
 
     public static void main(String[] args) throws Exception {
         Main obj = new Main();
