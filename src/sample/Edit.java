@@ -64,9 +64,11 @@ public class Edit implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (Controller.role==1){
-            rbLibrarian.setVisible(false);
-            rbStudent.setVisible(false);
+        if(rbLibrarian!=null) {
+            if (Controller.role == 1) {
+                rbLibrarian.setVisible(false);
+                rbStudent.setVisible(false);
+            }
         }
         if (Controller.libGlobal!=null){
             id= Controller.libGlobal.getId();
