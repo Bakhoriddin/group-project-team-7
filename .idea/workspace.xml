@@ -24,12 +24,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="deleted radio buttons and added design from ogay">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="bekh's changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/books/db.lck" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/borrowed/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/borrowed/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/db.lck" beforeDir="false" afterPath="$PROJECT_DIR$/db/db.lck" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/student.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/student.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,7 +309,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610291942820</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="bekh's changes">
+      <created>1610293395569</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1610293395569</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,29 +359,30 @@
     <MESSAGE value="Added BorrowedBooks/Deptor Buttons and Tables Correspondingly" />
     <MESSAGE value="fix merging" />
     <MESSAGE value="deleted radio buttons and added design from ogay" />
-    <option name="LAST_COMMIT_MESSAGE" value="deleted radio buttons and added design from ogay" />
+    <MESSAGE value="bekh's changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="bekh's changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser" timestamp="1610283661863">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="574" y="148" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864@0.0.1536.864" timestamp="1610283661863" />
-    <state width="1493" height="217" key="GridCell.Tab.0.bottom" timestamp="1610292817500">
+    <state width="1493" height="217" key="GridCell.Tab.0.bottom" timestamp="1610294282765">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="217" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1610292817500" />
-    <state width="1493" height="217" key="GridCell.Tab.0.center" timestamp="1610292817500">
+    <state width="1493" height="217" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1610294282765" />
+    <state width="1493" height="217" key="GridCell.Tab.0.center" timestamp="1610294282765">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="217" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1610292817500" />
-    <state width="1493" height="217" key="GridCell.Tab.0.left" timestamp="1610292817499">
+    <state width="1493" height="217" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1610294282765" />
+    <state width="1493" height="217" key="GridCell.Tab.0.left" timestamp="1610294282764">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="217" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1610292817499" />
-    <state width="1493" height="217" key="GridCell.Tab.0.right" timestamp="1610292817500">
+    <state width="1493" height="217" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1610294282764" />
+    <state width="1493" height="217" key="GridCell.Tab.0.right" timestamp="1610294282765">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state width="1493" height="217" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1610292817500" />
+    <state width="1493" height="217" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1610294282765" />
     <state x="315" y="86" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1610288224082">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

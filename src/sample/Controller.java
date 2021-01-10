@@ -197,6 +197,21 @@ public class Controller {
     private TableColumn<Borrowed, Boolean> tcDTitle;
     @FXML
     private TableColumn<Borrowed, String> tcDUsername;
+    //Student Books Details Table Items
+    @FXML
+    private TableColumn<Books, Integer> tcSISBN;
+    @FXML
+    private TableColumn<Books, String> tcSTitle;
+    @FXML
+    private TableColumn<Books, String> tcSAuthor;
+    @FXML
+    private TableColumn<Books, String> tcSSubject;
+    @FXML
+    private TableColumn<Books, String> tcSPublishDate;
+
+
+    @FXML
+
     //Librarian Add Window Items
     public static Borrowed borrowedGlobal;
 
@@ -210,7 +225,6 @@ public class Controller {
         if (!txtLogin.getText().equals(null) && !txtPassword.getText().equals(null)) {
 
             while (getStmt.next()) {
-                System.out.println(getStmt.getString("Login"));
                 if (getStmt.getString("Login").equals(txtLogin.getText()) && txtPassword.getText().equals(getStmt.getString("Password"))) {
 
                     if (getStmt.getInt("Role") == 0) {
@@ -293,7 +307,6 @@ public class Controller {
             while (getStmt.next()) {
                 String taken="";
                 while (borrowStmt.next()){
-                    System.out.println(borrowStmt.getString("borrowedBookName") +" "+borrowStmt.getString("userName"));
                     if (borrowStmt.getString("userName").equals(getStmt.getString("FirstName")))
                         taken+=borrowStmt.getString("borrowedBookName");
                 }
@@ -449,7 +462,6 @@ public class Controller {
             while (getStmt.next()) {
                 String taken="";
                 while (borrowStmt.next()){
-                    System.out.println(borrowStmt.getString("borrowedBookName") +" "+borrowStmt.getString("userName"));
                     if (borrowStmt.getString("userName").equals(getStmt.getString("FirstName")))
                         taken+=borrowStmt.getString("borrowedBookName");
                 }
@@ -552,55 +564,45 @@ public class Controller {
         tbLStudents.setVisible(false);
     }
     ////////////////////////////////////
-    @FXML
-    public void onLAdd() {
-
-        btnLAdd.setDisable(false);
-        btnLModify.setDisable(true);
-        btnLDelete.setDisable(true);
-    }
-
-    @FXML
-    private void onLModify() {
-        tbLStudents.setVisible(false);
-        tbLBooks.setVisible(false);
-        lblGreetLibrarian.setVisible(false);
-        btnLAdd.setDisable(true);
-        btnLModify.setDisable(false);
-        btnLDelete.setDisable(true);
-    }
-
-    @FXML
-    private void onLDelete() {
-        tbLStudents.setVisible(false);
-        tbLBooks.setVisible(false);
-        lblGreetLibrarian.setVisible(false);
-        btnLAdd.setDisable(true);
-        btnLModify.setDisable(true);
-        btnLDelete.setDisable(false);
-    }
-
-
     public void onSDetails() {
         lblSid.setText(String.valueOf( studentGlobal.getId()));
         lblSName.setText(studentGlobal.getFirstName());
         lblSFamName.setText(studentGlobal.getLastName());
         lblSEmail.setText(studentGlobal.getEmail());
+
         lblGreetStudent.setVisible(false);
         lblSName.setVisible(true);
         lblSFamName.setVisible(true);
         lblSid.setVisible(true);
         lblSEmail.setVisible(true);
-        listsBooks.setVisible(true);
-        lblCurFine.setVisible(true);
-        lblSBorrowed.setVisible(true);
+       // listsBooks.setVisible(true);
+       // lblCurFine.setVisible(true);
+       // lblSBorrowed.setVisible(true);
         tbSbooks.setVisible(false);
         btnSReserve.setVisible(false);
     }
 
 
     @FXML
-    public void onSBooks() {
+    public void onSBooks() throws Exception {
+        tcSISBN.setCellValueFactory(new PropertyValueFactory<>("ISBN"));
+        tcSTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        tcSAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        tcSSubject.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        tcSPublishDate.setCellValueFactory(new PropertyValueFactory<>("publishDate"));
+        ArrayList<Books> list = new ArrayList<>();
+        Connection con = DriverManager.getConnection("jdbc:derby:./books;", "user", "pass");
+        PreparedStatement get = con.prepareStatement("SELECT * FROM BOOKS");
+        ResultSet getStmt = get.executeQuery();
+        if (!booksAlreadyExits) {
+            while (getStmt.next()) {
+                list.add(new Books(getStmt.getInt("ISBN"), getStmt.getString("title"), getStmt.getString("subject"), getStmt.getString("author"), getStmt.getString("publishDate")));
+            }
+            for (Books u : list) {
+                tbSbooks.getItems().add(u);
+            }
+            booksAlreadyExits = true;
+        }
         lblGreetStudent.setVisible(false);
         lblSName.setVisible(false);
         lblSFamName.setVisible(false);
