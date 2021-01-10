@@ -469,9 +469,9 @@ public class Controller {
     public void onDeptor(){
         tbDeptor.setVisible(true);
         tbBorrowedBooks.setVisible(false);
-        tbBooks.setVisible(false);
+        tbLBooks.setVisible(false);
         lblGreetLibrarian.setVisible(false);
-        tbStudents.setVisible(false);
+        tbLStudents.setVisible(false);
     }
     @FXML
     public void onLAdd() {
@@ -529,6 +529,7 @@ public class Controller {
         tbSbooks.setVisible(true);
         btnSReserve.setVisible(true);
     }
+
 
     //Main Add Button
     @FXML
